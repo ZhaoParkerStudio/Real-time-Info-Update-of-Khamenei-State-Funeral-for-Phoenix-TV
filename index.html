@@ -3,342 +3,302 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>哈梅内伊国葬实时简报 | 凤凰卫视资讯台同传参考</title>
+<title>哈梅内伊国葬实时简报｜凤凰卫视资讯台同传参考</title>
 <style>
   :root{
-    --bg:#0d1117; --card:#161b22; --border:#30363d;
-    --text:#e6edf3; --muted:#8b949e; --accent:#f0883e;
-    --green:#3fb950; --red:#f85149; --blue:#58a6ff; --gold:#d29922;
-    --done:#3fb950; --now:#f0883e; --pending:#8b949e;
+    --bg:#0f1014;
+    --panel:#181a21;
+    --panel2:#1f222c;
+    --line:#2a2e3a;
+    --ink:#e8e9ed;
+    --sub:#9aa0ad;
+    --gold:#c9a96a;
+    --red:#c0392b;
+    --green:#2ecc71;
+    --blue:#3b82f6;
+    --amber:#f0b429;
+    --font:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC','Source Han Sans CN','WenQuanYi Micro Hei',sans-serif;
   }
-  *{margin:0;padding:0;box-sizing:border-box}
+  *{box-sizing:border-box;margin:0;padding:0}
   body{
-    font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei","Hiragino Sans GB","WenQuanYi Micro Hei",sans-serif;
-    background:var(--bg); color:var(--text); line-height:1.75; padding:20px; max-width:1100px; margin:0 auto;
+    font-family:var(--font);
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
   }
-  .status-bar{
-    background:linear-gradient(135deg,#1a1f2e,#21262d); border:1px solid var(--border);
-    border-radius:10px; padding:14px 20px; margin-bottom:20px; display:flex; flex-wrap:wrap;
-    justify-content:space-between; align-items:center; gap:10px;
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 60px}
+  /* 顶部状态栏 */
+  .statusbar{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(90deg,#1a1c24,#22252f);
+    border-bottom:1px solid var(--gold);
+    padding:12px 20px;
   }
-  .status-bar .title{font-size:15px; font-weight:700; color:var(--accent)}
-  .status-bar .updated{font-size:13px; color:var(--muted)}
-  .status-bar .live-dot{
-    display:inline-block; width:9px; height:9px; background:var(--red); border-radius:50%;
-    margin-right:6px; animation:pulse 1.5s infinite;
+  .statusbar .row{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+  .statusbar .title{font-size:15px;font-weight:700;color:var(--gold);letter-spacing:.5px}
+  .statusbar .meta{font-size:12.5px;color:var(--sub)}
+  .statusbar .meta b{color:var(--ink)}
+  .live-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:5px;animation:pulse 1.6s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  /* 头部 */
+  header.hero{padding:30px 0 18px;border-bottom:1px solid var(--line)}
+  header.hero h1{font-size:25px;font-weight:800;letter-spacing:.5px}
+  header.hero h1 small{display:block;font-size:13px;color:var(--sub);font-weight:400;margin-top:6px}
+  .links{margin-top:10px;font-size:12.5px}
+  .links a{color:var(--blue);text-decoration:none}
+  .links a:hover{text-decoration:underline}
+  /* 板块 */
+  section{margin-top:28px}
+  section > h2{
+    font-size:18px;font-weight:700;color:var(--gold);
+    border-left:4px solid var(--gold);padding-left:10px;margin-bottom:14px;
   }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-  h2{
-    font-size:18px; color:var(--accent); border-left:4px solid var(--accent);
-    padding-left:10px; margin:28px 0 14px; border-bottom:1px solid var(--border); padding-bottom:8px;
-  }
-  h3{font-size:15px; color:var(--blue); margin:18px 0 10px}
   .card{
-    background:var(--card); border:1px solid var(--border); border-radius:10px;
-    padding:18px; margin-bottom:16px;
+    background:var(--panel);border:1px solid var(--line);border-radius:10px;
+    padding:16px 18px;margin-bottom:14px;
   }
-  .focus-item{
-    border-left:3px solid var(--accent); padding:10px 14px; margin:10px 0;
-    background:#1c2128; border-radius:0 6px 6px 0;
-  }
-  .focus-item.now{border-left-color:var(--now)}
-  sup a{color:var(--blue); text-decoration:none; font-size:0.7em}
+  .card h3{font-size:15px;color:var(--ink);margin-bottom:8px}
+  .card p{font-size:14px;color:#cfd2da;margin-bottom:8px}
+  .card p:last-child{margin-bottom:0}
+  .tag{display:inline-block;font-size:11.5px;padding:1px 8px;border-radius:4px;margin-right:5px;font-weight:600;vertical-align:middle}
+  .tag-official{background:#3a2a1a;color:var(--amber)}
+  .tag-foreign{background:#1a2a3a;color:#7ab8ff}
+  .tag-warn{background:#3a1a1a;color:#ff8a80}
+  .tag-safe{background:#1a2e1a;color:var(--green)}
+  sup a{color:var(--blue);text-decoration:none;font-size:10.5px;font-weight:600}
   sup a:hover{text-decoration:underline}
-  .timeline{position:relative; padding-left:28px}
-  .timeline::before{
-    content:""; position:absolute; left:8px; top:0; bottom:0; width:2px;
-    background:var(--border);
+  /* 快速摘要 */
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-top:6px}
+  .stat{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:12px;text-align:center}
+  .stat .num{font-size:22px;font-weight:800;color:var(--gold)}
+  .stat .lbl{font-size:12px;color:var(--sub);margin-top:3px}
+  /* 时间线 */
+  .tl{position:relative;padding-left:22px}
+  .tl::before{content:'';position:absolute;left:6px;top:4px;bottom:4px;width:2px;background:var(--line)}
+  .tl .ev{position:relative;margin-bottom:16px}
+  .tl .ev::before{content:'';position:absolute;left:-22px;top:6px;width:12px;height:12px;border-radius:50%;background:#444;border:2px solid var(--line)}
+  .tl .ev.done::before{background:var(--green);border-color:#1a3a1a}
+  .tl .ev.now::before{background:var(--amber);border-color:#3a2a1a;box-shadow:0 0 0 4px rgba(240,180,41,.18)}
+  .tl .ev .date{font-size:12px;color:var(--sub)}
+  .tl .ev .date .badge{font-size:10.5px;padding:1px 6px;border-radius:3px;margin-left:6px;font-weight:700}
+  .badge-done{background:#1a3a1a;color:var(--green)}
+  .badge-now{background:#3a2a1a;color:var(--amber)}
+  .badge-next{background:#2a2a3a;color:var(--sub)}
+  .tl .ev .ev-title{font-size:15px;font-weight:700;margin:3px 0}
+  .tl .ev .ev-body{font-size:13.5px;color:#cfd2da}
+  /* 表格 */
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:var(--panel2);color:var(--gold);font-weight:700}
+  td .src{font-size:11px;color:var(--sub)}
+  /* 解说要点 */
+  .tips{background:var(--panel2);border-left:3px solid var(--blue);border-radius:6px;padding:14px 16px}
+  .tips ul{list-style:none}
+  .tips li{font-size:13.5px;color:#cfd2da;margin-bottom:7px;padding-left:18px;position:relative}
+  .tips li::before{content:'▸';position:absolute;left:0;color:var(--blue)}
+  /* 来源 */
+  ol.refs{counter-reset:r;font-size:12.5px}
+  ol.refs li{margin-bottom:6px;padding-left:4px;color:#cfd2da}
+  ol.refs li a{color:var(--blue);text-decoration:none;word-break:break-all}
+  ol.refs li a:hover{text-decoration:underline}
+  footer.foot{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);font-size:11.5px;color:var(--sub);text-align:center}
+  @media(max-width:600px){
+    header.hero h1{font-size:20px}
+    .summary{grid-template-columns:repeat(2,1fr)}
   }
-  .tl-item{position:relative; margin-bottom:18px; padding-left:10px}
-  .tl-item::before{
-    content:""; position:absolute; left:-24px; top:6px; width:14px; height:14px;
-    border-radius:50%; border:2px solid var(--border); background:var(--bg);
-  }
-  .tl-item.done::before{background:var(--done); border-color:var(--done)}
-  .tl-item.now::before{background:var(--now); border-color:var(--now); box-shadow:0 0 8px var(--now)}
-  .tl-date{font-size:13px; font-weight:700; color:var(--muted)}
-  .tl-item.now .tl-date{color:var(--now)}
-  .tl-item.done .tl-date{color:var(--done)}
-  .badge{
-    display:inline-block; font-size:11px; padding:2px 8px; border-radius:10px;
-    font-weight:700; margin-left:8px; vertical-align:middle;
-  }
-  .badge.done{background:rgba(63,185,80,.15); color:var(--done); border:1px solid rgba(63,185,80,.3)}
-  .badge.now{background:rgba(240,136,62,.15); color:var(--now); border:1px solid rgba(240,136,62,.3)}
-  .badge.pending{background:rgba(139,148,158,.1); color:var(--pending); border:1px solid rgba(139,148,158,.2)}
-  table{width:100%; border-collapse:collapse; margin:10px 0; font-size:13px}
-  th{background:#21262d; color:var(--accent); padding:8px 10px; text-align:left; border:1px solid var(--border)}
-  td{padding:8px 10px; border:1px solid var(--border); vertical-align:top}
-  td:first-child{font-weight:600; white-space:nowrap}
-  .tag-official{color:var(--green); font-weight:600}
-  .tag-foreign{color:var(--gold); font-weight:600}
-  .tag-danger{color:var(--red); font-weight:600}
-  .src-list{font-size:13px; color:var(--muted); padding-left:20px}
-  .src-list li{margin:6px 0; word-break:break-all}
-  .src-list a{color:var(--blue); text-decoration:none}
-  .src-list a:hover{text-decoration:underline}
-  .footer{text-align:center; color:var(--muted); font-size:12px; margin-top:30px; padding-top:16px; border-top:1px solid var(--border)}
-  .note{
-    background:rgba(248,81,73,.08); border:1px solid rgba(248,81,73,.25);
-    border-radius:8px; padding:10px 14px; margin:10px 0; font-size:13px;
-  }
-  .note-blue{background:rgba(88,166,255,.08); border-color:rgba(88,166,255,.25)}
-  .note-gold{background:rgba(210,153,34,.08); border-color:rgba(210,153,34,.25)}
-  ul.inline{list-style:none; padding:0}
-  ul.inline li{padding:4px 0; padding-left:18px; position:relative}
-  ul.inline li::before{content:"▸"; position:absolute; left:0; color:var(--accent)}
-  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-  @media(max-width:700px){.grid2{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-
-<div class="status-bar">
-  <div class="title"><span class="live-dot"></span>哈梅内伊国葬实时简报 · 凤凰卫视资讯台同传参考</div>
-  <div class="updated">最后更新：2026-07-05 15:20（北京时间）</div>
-</div>
-
-<!-- ============ 今日聚焦 ============ -->
-<h2>今日聚焦（7月5日）</h2>
-<div class="card">
-  <div class="focus-item now">
-    <strong>德黑兰公众悼念进入第二天，"复仇"口号持续</strong> — 7月4日清晨6时伊玛目霍梅尼大清真寺祈祷大厅开放以来，公众告别与瞻仰仪式持续进行。据新华社报道，4日已有<span class="tag-official">数百万</span>来自社会各界的伊朗民众涌入德黑兰参与悼念<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-3">[3]</a></sup>。7月5日悼念活动继续，大量民众通宵守候，现场氛围肃穆哀伤，民众持续高呼"美国去死""复仇"等口号<sup><a href="#cite-28">[28]</a></sup>。据央视总台记者魏然7月4日现场直击，德黑兰自4日起连续三天举行告别、悼念和送葬仪式，预计最多将有<span class="tag-official">1500万至2000万</span>民众参加<sup><a href="#cite-32">[32]</a></sup>。截至7月5日，公众送葬路线已划定并实施交通管制，整体安排暂无重大调整<sup><a href="#cite-28">[28]</a></sup>。伊朗政府已下令德黑兰所有公私机构4日至6日暂停办公<sup><a href="#cite-19">[19]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>灵柩旁并排五具棺木，含14个月大外孙女</strong> — 央视记者现场直击：哈梅内伊灵柩覆盖伊朗国旗、顶部放置黑色头巾，安放于清真寺露天广场高台之上；其旁并排安置4具家属棺柩——女儿、女婿、儿媳，以及最小的灵柩属于14个月大的外孙女泽拉·穆罕默迪·戈尔帕耶加尼，均于2月28日美以空袭首日遇害<sup><a href="#cite-27">[27]</a></sup><sup><a href="#cite-28">[28]</a></sup>。哈梅内伊位于德黑兰巴勒斯坦大街的住所为空袭目标，妻子、儿媳与外孙女同时遇难<sup><a href="#cite-30">[30]</a></sup>。伊朗官方与媒体将此次国葬称为"世纪葬礼"<sup><a href="#cite-28">[28]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>凤凰卫视驻伊朗记者李睿现场报道</strong> — 李睿从德黑兰发回报道：灵柩7月3日晨被送至霍梅尼塔清真寺，当日仅外宾与伊朗高层可入场；德黑兰全城禁飞、限行，安保等级极高，气氛肃穆。7月4日起开放民众吊唁，当局筹备大量食宿物资接待各地民众。正式送别仪式（7月6日送葬游行）当天，德黑兰所有商店一律不得开门营业，全城哀悼<sup><a href="#cite-27">[27]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>伊朗总统泪洒现场，议长痛哭颤抖</strong> — 7月3日遗体告别仪式上，总统佩泽希齐扬闭眼流泪，议长卡利巴夫痛哭到身体不停颤抖，最高领袖顾问雷扎伊泣不成声。这是自2月战争爆发以来三人首次共同现身<sup><a href="#cite-1">[1]</a></sup>。佩泽希齐扬呼吁全体国民"不分种族、信仰、政见与立场"大规模参与葬礼<sup><a href="#cite-19">[19]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>新任最高领袖穆杰塔巴·哈梅内伊缺席</strong> — 伊朗官员确认，出于安全原因，穆杰塔巴不会公开出席父亲葬礼，其岳父吴拉姆阿里·哈达达德勒代表家族出席遗体告别仪式<sup><a href="#cite-2">[2]</a></sup>。穆杰塔巴自3月8日继任以来从未公开露面<sup><a href="#cite-7">[7]</a></sup>。外媒报道称其在空袭中失去至少一条腿、严重内伤，可能处于昏迷状态，但伊朗官方坚称其仍在行使职权<sup><a href="#cite-26">[26]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>以色列防长卡茨将穆杰塔巴列入"死亡名单"</strong> — 卡茨6月29日公开宣布，新任最高领袖穆杰塔巴"已被标记为死亡目标"，并下令军队做好独立行动准备<sup><a href="#cite-8">[8]</a></sup><sup><a href="#cite-9">[9]</a></sup>。以军公开宣称已锁定并更新暗杀名单，扬言近期发起"斩首行动"<sup><a href="#cite-22">[22]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>约100国派代表团出席，欧洲未被邀请</strong> — 伊朗外交部发言人巴加埃7月3日表示，预计近100国代表出席。已知至少8位国家元首、12国议长及多国外长到场<sup><a href="#cite-5">[5]</a></sup>。中方由全国人大常委会副委员长何维代表出席，7月2日至3日在德黑兰期间分别会见伊朗总统佩泽希齐扬和议长卡利巴夫<sup><a href="#cite-5">[5]</a></sup><sup><a href="#cite-21">[21]</a></sup>。俄方由联邦安全会议副主席梅德韦杰夫作为普京特使出席，仪式后表示"伊朗终将战胜美国"，并与佩泽希齐扬会晤讨论加速落实双边战略协议<sup><a href="#cite-20">[20]</a></sup>。巴基斯坦总理夏巴兹7月3日率团抵达德黑兰<sup><a href="#cite-5">[5]</a></sup>。伊朗明确表示未向欧洲国家发出邀请，称其立场"站在了历史错误的一边"；美以完全被排除在受邀名单之外；印度仅派出外交国务部长<sup><a href="#cite-23">[23]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>美伊停火谈判进行中，以方被指密谋暗杀伊朗谈判代表</strong> — 哈梅内伊葬礼正值美伊60天停火期。7月1日双方在多哈完成低级别间接技术性会谈，巴基斯坦和卡塔尔分别斡旋<sup><a href="#cite-19">[19]</a></sup>。《纽约时报》7月2日报道，美方认为以色列曾在4月谈判敏感期策划暗杀伊朗议长卡利巴夫和外长阿拉格齐，美方通过第三国向伊朗发出预警；伊朗安全部队曾因情报显示以军战机进入伊朗领空，紧急将卡利巴夫座机改降马什哈德<sup><a href="#cite-19">[19]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>特朗普表态：葬礼期间约束以色列</strong> — 伊朗总统透露特朗普承诺在哈梅内伊葬礼期间约束以色列、不让其"趁机搞事"；特朗普本人对伊朗举国哀悼规模表示"惊讶"<sup><a href="#cite-10">[10]</a></sup><sup><a href="#cite-11">[11]</a></sup>。美伊约定60天内敲定全面核协议，但已过两周仍在争执谅解备忘录条款<sup><a href="#cite-19">[19]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>灵柩下方布置成生前讲话场景，空椅子双重象征</strong> — 哈梅内伊及家人灵柩安放于舞台正中央，灵柩下方被布置成其生前公开发表讲话的场景：蓝色幕布上悬挂伊玛目霍梅尼遗像，旁边放置一把标志性椅子。这把椅子曾是哈梅内伊发表讲话时所坐，如今空椅子也象征着继任者穆杰塔巴的缺席<sup><a href="#cite-36">[36]</a></sup>。7月4日13时30分（德黑兰一天最热时段），数百万民众冒35℃高温向哈梅内伊告别<sup><a href="#cite-36">[36]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>沙特副外长"不请自来"现身德黑兰，释放地区博弈信号</strong> — 据半岛电视台7月3日报道，沙特副外长瓦利德·赫里吉率团出席告别仪式，但伊朗此前并未向沙特发出正式邀请<sup><a href="#cite-37">[37]</a></sup><sup><a href="#cite-38">[38]</a></sup>。沙特至今未正式承认穆杰塔巴的最高领袖地位，也未就哈梅内伊遇难发表正式悼念声明；副外长级别"不请自来"被分析为既避免全面示好、又避免被归入对立阵营的精心拿捏<sup><a href="#cite-37">[37]</a></sup>。也门胡塞武装当天警告沙特不得阻止伊朗民航飞机在萨那降落，并威胁打击沙特机场与重要利益<sup><a href="#cite-37">[37]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>送葬路线全长10公里，灵柩覆盖卡尔巴拉圣旗</strong> — 7月6日送葬游行路线全长约10公里，从伊玛目霍赛因广场延伸至阿扎迪广场<sup><a href="#cite-37">[37]</a></sup>。灵柩上覆盖来自伊拉克卡尔巴拉伊玛目侯赛因圣陵的圣旗——侯赛因是什叶派信仰中抵抗与牺牲的永恒象征，用此旗盖棺将整场送别嵌入殉道者叙事<sup><a href="#cite-37">[37]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>NYT：穆杰塔巴希望出席7月9日马什哈德下葬并诵念悼词，被安全官员否决</strong> — 《纽约时报》7月4日援引两名革命卫队成员和一名参与葬礼筹划人士称，穆杰塔巴希望出席7月9日在马什哈德举行的下葬仪式并为父亲遗体诵念悼词，但安全官员已否决该想法，理由是以色列可能借机发动暗杀或追踪其藏身地点<sup><a href="#cite-36">[36]</a></sup>。此前NBC亦报道称伊朗官员确认穆杰塔巴预计不会出席葬礼<sup><a href="#cite-36">[36]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>7月3日日期选择具象征意义：伊朗航空655号班机被击落38周年</strong> — 伊朗特意选择7月3日启幕国葬。1988年7月3日，伊朗航空655号班机在波斯湾上空被美国海军导弹巡洋舰击落，机上290人全部遇难，其中包括66名儿童。时隔38年，伊朗选择该纪念日举办葬礼，既提醒美方"伊朗人并未忘记"，也在特朗普高调举办独立日庆典之际发出信号<sup><a href="#cite-36">[36]</a></sup>。
-  </div>
-  <div class="focus-item now">
-    <strong>联合国安理会7月5日举行紧急公开会，美伊激烈交锋</strong> — 7月5日，联合国安理会就伊朗局势举行紧急公开会议，美伊代表激烈交锋。美国常驻联合国代表华尔兹指责伊朗违背两周前签署的谅解备忘录核心前提——确保霍尔木兹海峡及国际水道开放、停止攻击民用航运；伊朗常驻联合国代表伊拉瓦尼反击称，美以在外交谈判期间发动的军事行动才是当前危机根源，重申伊朗所有行动均依据《联合国宪章》行使固有自卫权，"不能颠倒受害者与侵略者的角色"，并表示伊朗仍致力于执行谅解备忘录条款，前提是美国忠实履行自身义务<sup><a href="#cite-39">[39]</a></sup>。美方再次要求发言，强调关闭国际水道并非自卫行为；伊朗则反指部分地区国家允许美以使用其领土领空实施军事行动应承担国际责任，并称美国对伊朗的海上封锁属于"集体惩罚"<sup><a href="#cite-39">[39]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>哈马斯、真主党吊唁代表团抵达德黑兰，亚美尼亚总理与伊拉克库区主席亲自出席</strong> — 据法新社报道，巴勒斯坦武装派别哈马斯和黎巴嫩真主党的吊唁代表团于7月4日抵达德黑兰参加哀悼活动<sup><a href="#cite-40">[40]</a></sup>。亚美尼亚总理帕希尼扬、伊拉克库尔德自治区主席巴尔扎尼亦亲自到场吊唁<sup><a href="#cite-40">[40]</a></sup>。据伊朗国家通讯社和法新社统计，约<span class="tag-official">40个国家</span>代表团及100余个国际文化和宗教团体抵达伊朗出席葬礼<sup><a href="#cite-40">[40]</a></sup>。
-  </div>
-  <div class="focus-item">
-    <strong>法新社与新华社现场直击：大穆萨拉建筑群、阿扎迪大道拆除路障、部分居民离城</strong> — 法新社记者7月4日现场报道，哀悼者聚集在巨大的大穆萨拉宗教建筑群外，灵柩在此展示；建筑群墙壁上挂满哈梅内伊肖像和语录<sup><a href="#cite-40">[40]</a></sup>。工人已在阿扎迪大道上拆除路障——这条主干道将是送葬游行经过的路线；路边洒水车向路面喷水降温，一面红旗下垂的模型船（什叶派象征）也已竖起<sup><a href="#cite-40">[40]</a></sup>。德黑兰一个大型公园被改造成营地，搭建数百顶红新月会帐篷接待外地吊唁者<sup><a href="#cite-40">[40]</a></sup>。法新社称德黑兰比平时安静，部分居民选择离城北上，称"待在城里真的变得很难"<sup><a href="#cite-40">[40]</a></sup>。新华社记者7月4日清晨6时现场直击：民众挥舞国旗、手持哈梅内伊与穆杰塔巴照片高呼反美反以口号；来自北部城市的74岁老人称一家六口驾车赴德黑兰送别，全家手机壁纸均设为哈梅内伊照片<sup><a href="#cite-41">[41]</a></sup>。
+<div class="statusbar">
+  <div class="row">
+    <div class="title"><span class="live-dot"></span>哈梅内伊国葬实时简报｜凤凰卫视资讯台</div>
+    <div class="meta">最后更新：<b>2026-07-05 16:25（北京时间）</b> · 供同传解说参考</div>
   </div>
 </div>
+<div class="wrap">
 
-<!-- ============ 国葬日程时间线 ============ -->
-<h2>国葬日程时间线（7月3日—9日）</h2>
-<div class="card">
-<div class="timeline">
+  <header class="hero">
+    <h1>伊朗已故最高领袖阿里·哈梅内伊国葬实时追踪
+      <small>2月28日美以联合空袭中遇害 · 7月3日德黑兰启幕 · 7月9日马什哈德安葬 · 全程6天</small>
+    </h1>
+    <div class="links">在线页面：<a href="https://zhaoparkerstudio.github.io/Real-time-Info-Update-of-Khamenei-State-Funeral-for-Phoenix-TV/" target="_blank">GitHub Pages 实时版</a></div>
+  </header>
 
-  <div class="tl-item done">
-    <div class="tl-date">7月3日（周四）· 德黑兰<span class="badge done">已完成</span></div>
-    <p>遗体告别仪式在德黑兰启幕。伊朗各界人士、宗教领袖及多国官员出席。灵柩前摆放红色郁金香，天花板悬挂纸制蝴蝶装饰。革命卫队现任总司令瓦希迪自2月8日以来首次公开露面，7月2日晚坐在哈梅内伊灵柩旁，3日誓言"哈梅内伊是永恒的"，绝不向敌对势力屈服<sup><a href="#cite-1">[1]</a></sup>。总统佩泽希齐扬、议长卡利巴夫、司法总监埃杰伊及确定国家利益委员会主席拉里贾尼出席<sup><a href="#cite-19">[19]</a></sup>。约100国派代表团，含至少8位国家元首、12国议长<sup><a href="#cite-19">[19]</a></sup>。梅德韦杰夫仪式后会晤佩泽希齐扬，转达普京哀悼，双方讨论加速落实经贸、能源和过境运输协议<sup><a href="#cite-20">[20]</a></sup>。</p>
+  <!-- 快速摘要 -->
+  <div class="summary">
+    <div class="stat"><div class="num">7月5日</div><div class="lbl">当前阶段·德黑兰公众悼念</div></div>
+    <div class="stat"><div class="num">1500-2000万</div><div class="lbl">官方预计吊唁人数</div></div>
+    <div class="stat"><div class="num">~100国</div><div class="lbl">派出官方代表团</div></div>
+    <div class="stat"><div class="num">8+</div><div class="lbl">国家元首亲临</div></div>
+    <div class="stat"><div class="num">6天</div><div class="lbl">国葬总时长(7/3–7/9)</div></div>
   </div>
 
-  <div class="tl-item done">
-    <div class="tl-date">7月4日（周五）· 德黑兰<span class="badge done">已完成</span></div>
-    <p>伊玛目霍梅尼大清真寺祈祷大厅清晨6时开放，自3日晚间起等候的哀悼者陆续进入。遗体及遇难家人遗体安放在清真寺建筑外广场上供瞻仰<sup><a href="#cite-4">[4]</a></sup>。央视记者现场直击：广场高台上并排安置5具灵柩——哈梅内伊灵柩覆盖伊朗国旗、顶部放置黑色头巾，旁侧4具家属棺柩分别为女儿、女婿、儿媳及14个月大的外孙女泽拉，均于2月28日空袭首日遇害<sup><a href="#cite-27">[27]</a></sup>。新华社记者现场报道，<span class="tag-official">数百万</span>民众参与悼念<sup><a href="#cite-3">[3]</a></sup><sup><a href="#cite-4">[4]</a></sup>。悼念者将围巾抛向灵柩（伊朗宗教习俗，逝者借此获祝福），工作人员轻触棺木。民众挥舞伊朗国旗，手持哈梅内伊和穆杰塔巴照片，高呼反美反以口号<sup><a href="#cite-4">[4]</a></sup>。德黑兰全城已做好接待外地吊唁民众准备，多处公园改为临时安置营地；公共交通免费，地铁24小时运营，清真寺周边仅允许步行通行<sup><a href="#cite-19">[19]</a></sup><sup><a href="#cite-27">[27]</a></sup>。</p>
-  </div>
+  <!-- 今日聚焦 -->
+  <section>
+    <h2>今日聚焦（7月5日）</h2>
+    <div class="card">
+      <h3>德黑兰公众告别与悼念持续进行中</h3>
+      <p>7月4日清晨6时伊玛目霍梅尼大清真寺祈祷大厅开放后，公众告别仪式正式开始，4日与5日连续两天哈梅内伊遗体及遇难家人遗体停放在清真寺建筑外广场供民众瞻仰。当地媒体报道数百万民众参与悼念，哀悼者自3日晚间起便在清真寺及周边道路彻夜等候<sup><a href="#cite-1">1</a></sup><sup><a href="#cite-2">2</a></sup>。民众挥舞伊朗国旗、手持已故领袖哈梅内伊与现任最高领袖穆杰塔巴·哈梅内伊照片，高呼反对美国和以色列的口号<sup><a href="#cite-1">1</a></sup>。</p>
+    </div>
+    <div class="card">
+      <h3>安保规模空前，空域关闭、武装部队最高战备</h3>
+      <p>伊朗政府调集 <span class="tag tag-safe">安保</span>2500辆救护车、21架直升机、100架无人机和数千名救援人员；德黑兰20多家医院、50万升静脉注射液和2万间教室处于待命状态。广场设置6000多个喷头高空洒水降温，军队烘焙5000万个面包款待哀悼者。德黑兰国际与国内机场关闭数日，1700万人口城市禁止游行路线附近私家车通行，紧急开放700多个停车区<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-6">6</a></sup>。德黑兰上空实施飞行管制，武装部队进入最高战备状态<sup><a href="#cite-2">2</a></sup>。</p>
+    </div>
+    <div class="card">
+      <h3>安全态势高度紧张：以方威胁与伊方警告交锋</h3>
+      <p><span class="tag tag-warn">威胁</span>以色列国防部长卡茨此前公开将新任最高领袖穆杰塔巴·哈梅内伊列入定点清除"死亡目标"名单，称时机成熟即动手清除<sup><a href="#cite-5">5</a></sup>。伊朗外长阿拉格奇在社交平台强硬反击，称以色列为"美国的宠物"，警告美国若管不好将以亲自出手教训<sup><a href="#cite-5">5</a></sup>。伊朗武装部队哈塔姆安比亚中央总部司令阿里·阿卜杜拉希警告美以及其盟友"切勿在葬礼期间对伊朗发出威胁或采取侵略行动"，称任何侵略都将遭严厉回击<sup><a href="#cite-2">2</a></sup>。美伊谈判目前达成14点谅解备忘录，第一阶段要求各方停止军事行动<sup><a href="#cite-5">5</a></sup>。</p>
+    </div>
+    <div class="card">
+      <h3>新任最高领袖穆杰塔巴·哈梅内伊持续缺席公开仪式</h3>
+      <p>穆杰塔巴至今未在国葬公开环节露面。伊朗官方明确表示，出于安全考虑穆杰塔巴预计不会公开出席葬礼。7月3日遗体告别仪式上，其岳父吴拉姆阿里·哈达达德勒代表出席<sup><a href="#cite-2">2</a></sup>。中方在何维表态中提及"希望在穆杰塔巴最高领袖领导下，伊朗能够尽快恢复安全、稳定、发展"，间接确认其继任地位<sup><a href="#cite-4">4</a></sup>。外界关注其是否会以预录视频方式出现<sup><a href="#cite-5">5</a></sup>。</p>
+    </div>
+  </section>
 
-  <div class="tl-item now">
-    <div class="tl-date">7月5日（周六）· 德黑兰<span class="badge now">进行中</span></div>
-    <p>公众告别与瞻仰仪式第二天继续，哈梅内伊遗体停放于伊玛目霍梅尼大清真寺供人瞻仰<sup><a href="#cite-1">[1]</a></sup>。悼念者持续涌入，大批民众通宵守候，现场"复仇"口号持续，民众挥舞伊朗国旗高呼"打倒美国"<sup><a href="#cite-28">[28]</a></sup><sup><a href="#cite-37">[37]</a></sup>。7月4日13时30分（德黑兰一天最热时段），数百万民众冒35℃高温告别<sup><a href="#cite-36">[36]</a></sup>。现场视觉细节：灵柩下方被布置成哈梅内伊生前发表讲话的场景，蓝色幕布悬挂霍梅尼遗像，旁边放置其标志性空椅子——既象征哈梅内伊的缺席，也象征继任者穆杰塔巴的缺席<sup><a href="#cite-36">[36]</a></sup>。央视总台记者魏然现场直击：德黑兰自4日起连续三天举行告别、悼念和送葬仪式，预计最多将有1500万至2000万民众参加<sup><a href="#cite-32">[32]</a></sup>。德黑兰气温预计超过35℃，广场设置6000余个喷头高空洒水降温，军队烘焙5000万个面包款待哀悼者<sup><a href="#cite-1">[1]</a></sup>。德黑兰所有公私机构4日至6日暂停办公，市中心大部分区域实施交通管制；凤凰卫视记者李睿报道，7月6日正式送葬游行当天德黑兰所有商店一律不得开门<sup><a href="#cite-19">[19]</a></sup><sup><a href="#cite-27">[27]</a></sup>。7月5日，联合国安理会就伊朗局势举行紧急公开会议，美伊代表就霍尔木兹海峡通行及谅解备忘录执行问题激烈交锋<sup><a href="#cite-39">[39]</a></sup>。哈马斯、真主党吊唁代表团及亚美尼亚总理帕希尼扬、伊拉克库区主席巴尔扎尼等多国政要已抵达德黑兰；据法新社/IRNA统计，约40国代表团及100余团体出席<sup><a href="#cite-40">[40]</a></sup>。法新社现场直击：大穆萨拉宗教建筑群外哀悼者聚集，阿扎迪大道已拆除路障为7月6日送葬游行做准备，部分德黑兰居民选择离城<sup><a href="#cite-40">[40]</a></sup>。</p>
-  </div>
+  <!-- 国葬日程时间线 -->
+  <section>
+    <h2>国葬日程时间线</h2>
+    <div class="tl">
+      <div class="ev done">
+        <div class="date">7月3日<span class="badge badge-done">已完成</span></div>
+        <div class="ev-title">德黑兰遗体告别仪式启幕</div>
+        <div class="ev-body">伊朗各界人士、宗教领袖及多国官员出席。约近100国派遣官方代表团、公众团体或知名人士出席，含至少8位国家元首、12国议长及多国外长、部长级官员或特使<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-8">8</a></sup>。革命卫队总司令瓦希迪自2月8日以来首次公开露面，坐在哈梅内伊灵柩旁<sup><a href="#cite-2">2</a></sup>。总统佩泽希齐扬闭眼流泪，议长卡利巴夫痛哭身体不停颤抖，最高领袖顾问雷扎伊泣不成声<sup><a href="#cite-2">2</a></sup>。</div>
+      </div>
+      <div class="ev done">
+        <div class="date">7月4日<span class="badge badge-done">已完成</span></div>
+        <div class="ev-title">德黑兰公众告别仪式（第一天）</div>
+        <div class="ev-body">清晨6时伊玛目霍梅尼大清真寺祈祷大厅开放，哈梅内伊及遇难家人遗体安放于建筑外广场。数百万民众参与，民众高呼反对美以口号<sup><a href="#cite-1">1</a></sup><sup><a href="#cite-9">9</a></sup>。中俄代表落座第一排<sup><a href="#cite-8">8</a></sup>。</div>
+      </div>
+      <div class="ev now">
+        <div class="date">7月5日<span class="badge badge-now">进行中</span></div>
+        <div class="ev-title">德黑兰公众告别仪式（第二天）</div>
+        <div class="ev-body">悼念仪式继续，遗体停放于大清真寺供人瞻仰。官方预计4-5日两天悼念后将于6日举行送葬游行<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-6">6</a></sup>。</div>
+      </div>
+      <div class="ev">
+        <div class="date">7月6日<span class="badge badge-next">即将到来</span></div>
+        <div class="ev-title">德黑兰送葬队伍游行</div>
+        <div class="ev-body">将举行穿越德黑兰市区的大规模送葬游行，路线全长约10公里。游行结束后遗体运往宗教圣城库姆<sup><a href="#cite-6">6</a></sup><sup><a href="#cite-9">9</a></sup>。</div>
+      </div>
+      <div class="ev">
+        <div class="date">7月7日<span class="badge badge-next">即将到来</span></div>
+        <div class="ev-title">库姆送葬游行与祈祷仪式</div>
+        <div class="ev-body">遗体运抵什叶派宗教圣城库姆，举行送葬队伍游行和祈祷仪式<sup><a href="#cite-1">1</a></sup><sup><a href="#cite-6">6</a></sup>。</div>
+      </div>
+      <div class="ev">
+        <div class="date">7月8日<span class="badge badge-next">即将到来</span></div>
+        <div class="ev-title">伊拉克纳杰夫/卡尔巴拉跨国送葬</div>
+        <div class="ev-body">应伊拉克宗教界和社会团体邀请，遗体赴伊拉克什叶派圣城纳杰夫与卡尔巴拉，供什叶派穆斯林悼念<sup><a href="#cite-6">6</a></sup>。</div>
+      </div>
+      <div class="ev">
+        <div class="date">7月9日<span class="badge badge-next">即将到来</span></div>
+        <div class="ev-title">马什哈德最终安葬</div>
+        <div class="ev-body">遗体最终在哈梅内伊出生地、伊朗东北部圣城马什哈德伊玛目礼萨圣陵安葬<sup><a href="#cite-1">1</a></sup><sup><a href="#cite-7">7</a></sup>。</div>
+      </div>
+    </div>
+  </section>
 
-  <div class="tl-item">
-    <div class="tl-date">7月6日（周日）· 德黑兰<span class="badge pending">待举行</span></div>
-    <p>举行穿越德黑兰市区的大规模送葬游行，自由大街沿途护栏已拆除。送葬路线全长约10公里，从伊玛目霍赛因广场延伸至阿扎迪广场<sup><a href="#cite-37">[37]</a></sup>。德黑兰市长扎卡尼形容为"该市历史上规模最大的集会"，<span class="tag-official">官方预估约2000万民众</span>参与<sup><a href="#cite-19">[19]</a></sup>。遗体随后运往宗教圣城库姆。德黑兰空域当日全面关闭，所有航班暂停运营<sup><a href="#cite-19">[19]</a></sup>。</p>
-  </div>
+  <!-- 外国代表团 -->
+  <section>
+    <h2>外国代表团与各方表态</h2>
+    <table>
+      <thead><tr><th style="width:18%">国家/方</th><th style="width:30%">代表（身份）</th><th>表态与动态</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>中国</td>
+          <td>何维（全国人大常委会副委员长，国家代表）</td>
+          <td>佩泽希齐扬总统和卡利巴夫议长分别会见何维。何维表示对哈梅内伊遇难深切哀悼，"希望在穆杰塔巴最高领袖领导下，伊朗尽快恢复安全、稳定、发展"；强调建交55年来中伊关系平稳健康发展，中方发展对伊关系决心坚定不移。落座仪式第一排<sup><a href="#cite-4">4</a></sup><sup><a href="#cite-8">8</a></sup></td>
+        </tr>
+        <tr>
+          <td>俄罗斯</td>
+          <td>梅德韦杰夫（联邦安全会议副主席，普京总统特使）</td>
+          <td>参加遗体告别仪式后表示"伊朗终将战胜美国"。落座第一排<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-8">8</a></sup></td>
+        </tr>
+        <tr>
+          <td>巴基斯坦</td>
+          <td>夏巴兹·谢里夫（总理）</td>
+          <td>亲临现场吊唁<sup><a href="#cite-9">9</a></sup></td>
+        </tr>
+        <tr>
+          <td>印度</td>
+          <td>邦长、无实权外交国务部长</td>
+          <td>以莫迪行程冲突为由拒绝高层出席，仅派低层级官员，被指"降格参会"<sup><a href="#cite-8">8</a></sup></td>
+        </tr>
+        <tr>
+          <td>欧洲国家</td>
+          <td>—</td>
+          <td>伊朗官方称未向欧洲国家政要发出邀请，因其"立场实在可耻""站在了历史错误的一边"<sup><a href="#cite-8">8</a></sup></td>
+        </tr>
+        <tr>
+          <td>总计</td>
+          <td>~100国代表团</td>
+          <td>含至少8位国家元首（总统/总理）、12国议长、多国外长及部长级官员或特使<sup><a href="#cite-2">2</a></sup></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-  <div class="tl-item">
-    <div class="tl-date">7月7日（周一）· 库姆<span class="badge pending">待举行</span></div>
-    <p>遗体运抵什叶派宗教圣城库姆，举行送葬队伍游行和祈祷仪式（殡礼）<sup><a href="#cite-2">[2]</a></sup>。</p>
-  </div>
+  <!-- 人群规模 -->
+  <section>
+    <h2>人群规模：官方与外媒口径对比</h2>
+    <div class="card">
+      <table>
+        <thead><tr><th style="width:22%">口径来源</th><th>人数估计</th></tr></thead>
+        <tbody>
+          <tr><td><span class="tag tag-official">官方</span>伊朗官方预计</td><td>持续多日葬礼预计迎来 <b>1500万至2000万</b> 吊唁者；德黑兰当局为多达2000万参会者做准备<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-7">7</a></sup></td></tr>
+          <tr><td><span class="tag tag-foreign">外媒</span>专家/媒体估算</td><td>专家估算希望送行人数 <b>不少于百万人</b>；萨马电视台援引伊媒称首都安排1500万至2000万哀悼者<sup><a href="#cite-2">2</a></sup><sup><a href="#cite-7">7</a></sup></td></tr>
+        </tbody>
+      </table>
+      <p style="margin-top:10px;font-size:12.5px;color:var(--sub)">注：官方口径含全国多城市多日累计；外媒多聚焦单日单城可见规模。同传解说时建议明确标注口径来源。</p>
+    </div>
+  </section>
 
-  <div class="tl-item">
-    <div class="tl-date">7月8日（周二）· 伊拉克纳杰夫/卡尔巴拉<span class="badge pending">待举行</span></div>
-    <p>应伊拉克宗教界和社会团体邀请，遗体赴伊拉克什叶派圣城纳杰夫和卡尔巴拉举行跨国送葬仪式，供什叶派穆斯林前往悼念<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-2">[2]</a></sup>。</p>
-  </div>
+  <!-- 国际反应 -->
+  <section>
+    <h2>国际反应与联合国动态</h2>
+    <div class="card">
+      <p><b>联合国安理会：</b>哈梅内伊2月28日遇害后，安理会曾召开紧急会议讨论美以空袭。国葬期间各方关注安理会是否会就葬礼安全与人道问题再度表态，目前未见针对葬礼本身的专项决议。</p>
+      <p><b>美伊谈判：</b>双方已达成14点谅解备忘录，第一阶段要求所有相关方停止军事行动、不再动用武力威胁，美国目前不希望中东局势立即失控<sup><a href="#cite-5">5</a></sup>。</p>
+      <p><b>地区影响：</b>伊朗为多个什叶派圣城安排送葬，7月8日遗体赴伊拉克纳杰夫与卡尔巴拉，凸显其跨国宗教影响力与地区联动<sup><a href="#cite-6">6</a></sup>。</p>
+    </div>
+  </section>
 
-  <div class="tl-item">
-    <div class="tl-date">7月9日（周三）· 马什哈德<span class="badge pending">待举行</span></div>
-    <p>遗体运回伊朗东北部圣城马什哈德——哈梅内伊的出生地，在伊玛目礼萨圣陵举行最终安葬仪式<sup><a href="#cite-2">[2]</a></sup><sup><a href="#cite-12">[12]</a></sup>。</p>
-  </div>
+  <!-- 同传解说要点 -->
+  <section>
+    <h2>同传解说要点提示</h2>
+    <div class="tips">
+      <ul>
+        <li>区分"已故最高领袖阿里·哈梅内伊"与"现任最高领袖穆杰塔巴·哈梅内伊"，避免口播混淆。</li>
+        <li>穆杰塔巴因安全原因缺席公开仪式，由岳父哈达达德勒代表出席；解说时勿断言其"拒绝出席"。</li>
+        <li>人数口径须标注来源：官方"1500-2000万"为多日全国累计；外媒单城单日口径更低。</li>
+        <li>伊方称未邀请欧洲政要；俄方梅德韦杰夫、中方何维、巴方夏巴兹为已知高规格代表。</li>
+        <li>安全态势关键词：飞行管制、机场关闭、最高战备、以方"死亡名单"威胁、伊方严厉警告。</li>
+        <li>地理节点：7/3-6德黑兰 → 7/7库姆 → 7/8伊拉克纳杰夫/卡尔巴拉 → 7/9马什哈德伊玛目礼萨圣陵。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Sources -->
+  <section>
+    <h2>来源 Sources</h2>
+    <ol class="refs">
+      <li id="cite-1">新华网，《现场直击｜伊朗民众泪别哈梅内伊》，2026-07-05，<a href="http://www.xinhuanet.com/world/20260705/a68d9ab9b4894d058612b68b9615fb77/c.html" target="_blank">xinhuanet.com</a></li>
+      <li id="cite-2">凤凰网（转每日经济新闻），《哈梅内伊遗体告别仪式上，伊朗总统泪洒现场…》，2026-07-04，<a href="https://news.ifeng.com/c/8uUOPGXOgBq" target="_blank">news.ifeng.com</a></li>
+      <li id="cite-3">央视新闻，《总台现场直击丨伊朗为已故最高领袖哈梅内伊举行告别仪式》，2026-07-04，<a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?channelId=1119&item_id=13513637439808639275" target="_blank">cctvnews.cctv.com</a></li>
+      <li id="cite-4">中华人民共和国外交部，《全国人大常委会副委员长何维代表中方出席伊朗已故最高领袖哈梅内伊葬礼》，2026-07-04，<a href="https://www.fmprc.gov.cn/web/wjdt_674879/gjldrhd_202607/t20260704_11975020.shtml" target="_blank">fmprc.gov.cn</a></li>
+      <li id="cite-5">搜狐，《7月5日：哈梅内伊葬礼将要举行…伊朗外长提前发出强硬警告》，2026-07-05，<a href="https://m.sohu.com/a/1046066211_121146020/" target="_blank">m.sohu.com</a></li>
+      <li id="cite-6">红星新闻（转头条），《哈梅内伊6天国葬具体流程公布，安保级别前所未有》，2026-07，<a href="http://m.toutiao.com/group/7657508615607075354/" target="_blank">toutiao.com</a></li>
+      <li id="cite-7">NDTV Profit，《Iran Plans Three-Day Funeral For 'Martyred Imam' Ali Khamenei》，2026，<a href="https://www.ndtvprofit.com/world/iran-plans-three-day-funeral-for-martyred-imam-ali-khamenei-burial-likely-in-mashhad-11582546" target="_blank">ndtvprofit.com</a></li>
+      <li id="cite-8">网易，《哈梅内伊国葬盛大举行！中俄代表站首排，印度却降格参会》，2026-07，<a href="http://m.163.com/dy/article_cambrian/L1217EKK0556BP4K.html" target="_blank">163.com</a></li>
+      <li id="cite-9">黄河新闻网（综合央视新闻、参考消息、中新社），《哈梅内伊葬礼现场，民众高呼"打倒美国"》，2026-07，<a href="http://m.toutiao.com/group/7658678560554582574/" target="_blank">toutiao.com</a></li>
+      <li id="cite-10">财新，《一周天下｜伊朗为哈梅内伊举行国葬》（图集），2026-07-04，<a href="https://photos.caixin.com/m/2026-07-04/102460936.html" target="_blank">photos.caixin.com</a></li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    凤凰卫视资讯台 · 同传解说参考简报 · 数据截止 2026-07-05 16:25（北京时间）<br>
+    本简报综合新华社、央视、凤凰网、外交部、NDTV 等公开报道，人数与立场表述区分官方与外媒口径。
+  </footer>
 
 </div>
-</div>
-
-<!-- ============ 外国代表团 ============ -->
-<h2>外国代表团与表态</h2>
-<div class="card">
-<table>
-  <tr><th>国家/方</th><th>代表</th><th>身份与表态</th></tr>
-  <tr><td>中国</td><td>何维</td><td>全国人大常委会副委员长，7月2日至3日代表中方出席。分别会见伊朗总统佩泽希齐扬和议长卡利巴夫<sup><a href="#cite-5">[5]</a></sup><sup><a href="#cite-21">[21]</a></sup></td></tr>
-  <tr><td>俄罗斯</td><td>梅德韦杰夫</td><td>联邦安全会议副主席、普京特使。出席遗体告别仪式后表示"伊朗终将战胜美国"，与佩泽希齐扬会晤讨论加速落实经贸、能源和过境运输战略协议<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-20">[20]</a></sup>。普京此前已致唁电</td></tr>
-  <tr><td>巴基斯坦</td><td>夏巴兹·谢里夫</td><td>总理，7月3日率团抵达德黑兰，携陆军参谋长穆尼尔一同到场，"总理加军方一把手"阵容释放伊斯兰堡为局中人的信号<sup><a href="#cite-5">[5]</a></sup><sup><a href="#cite-37">[37]</a></sup>。巴方同时担任美伊停火谈判斡旋方，不排除未来在伊斯兰堡举行会谈<sup><a href="#cite-19">[19]</a></sup></td></tr>
-  <tr><td>沙特阿拉伯</td><td>瓦利德·赫里吉</td><td>副外长，率团"不请自来"——伊朗未向沙特发出正式邀请<sup><a href="#cite-37">[37]</a></sup><sup><a href="#cite-38">[38]</a></sup>。沙特至今未正式承认穆杰塔巴最高领袖地位，也未就哈梅内伊遇难发表正式悼念声明。副外长级别被分析为既避免全面示好、又避免被归入对立阵营的精心拿捏。胡塞武装警告沙特不得阻止伊朗民航机在萨那降落，并威胁打击沙特机场<sup><a href="#cite-37">[37]</a></sup></td></tr>
-  <tr><td>欧洲国家</td><td>—</td><td><span class="tag-danger">未获邀请</span>。伊朗明确表示未向欧洲国家发出参会邀请，称其在冲突期间立场"站在了历史错误的一边"<sup><a href="#cite-23">[23]</a></sup></td></tr>
-  <tr><td>印度</td><td>比哈尔邦邦长赛义德·阿塔·哈斯南、外交国务部长帕比特拉·马赫塔</td><td>派出邦长及部长级代表出席，规格低于中俄巴<sup><a href="#cite-23">[23]</a></sup><sup><a href="#cite-28">[28]</a></sup></td></tr>
-  <tr><td>哈马斯/真主党</td><td>吊唁代表团</td><td>巴勒斯坦武装派别哈马斯和黎巴嫩真主党的吊唁代表团7月4日抵达德黑兰参加哀悼活动<sup><a href="#cite-40">[40]</a></sup></td></tr>
-  <tr><td>亚美尼亚</td><td>帕希尼扬</td><td>总理，亲自到场吊唁<sup><a href="#cite-40">[40]</a></sup></td></tr>
-  <tr><td>伊拉克库区</td><td>巴尔扎尼</td><td>库尔德自治区主席，亲自到场吊唁<sup><a href="#cite-40">[40]</a></sup></td></tr>
-  <tr><td>多国</td><td>—</td><td>伊朗外交部称近100国派代表团，含至少8位国家元首、12国议长、多国外长及特使<sup><a href="#cite-5">[5]</a></sup>。据法新社/IRNA统计，约<span class="tag-official">40个国家</span>代表团及100余个国际文化和宗教团体抵达伊朗<sup><a href="#cite-40">[40]</a></sup>。已确认到场还包括格鲁吉亚总统卡韦拉什维利、阿富汗塔利班政府外长穆塔基、土库曼斯坦国家领导人别尔德穆罕默多夫，以及土耳其、阿塞拜疆、亚美尼亚、塔吉克斯坦、卡塔尔、阿曼、伊拉克、古巴、塞尔维亚等国代表团<sup><a href="#cite-37">[37]</a></sup>。6月30日伊朗学生通讯社称已有30余国确认<sup><a href="#cite-6">[6]</a></sup></td></tr>
-</table>
-<div class="note note-blue">
-  <strong>同传提示：</strong>凤凰卫视同传解说时需注意区分"遗体告别仪式"（7月3日，官方与外宾出席）与"公众告别/悼念仪式"（7月4-5日，面向民众开放瞻仰）两个不同环节。AP/Reuters直播讯号画面以大清真寺内外人群与灵柩为主。
-</div>
-</div>
-
-<!-- ============ 新任最高领袖动态 ============ -->
-<h2>新任最高领袖穆杰塔巴·哈梅内伊动态</h2>
-<div class="card">
-<ul class="inline">
-  <li><strong>2月28日</strong>：在美以联合空袭中幸免于难，其父哈梅内伊及部分家人遇难<sup><a href="#cite-2">[2]</a></sup></li>
-  <li><strong>3月8日</strong>：继任伊朗最高领袖，但<span class="tag-danger">至今未公开露面</span><sup><a href="#cite-2">[2]</a></sup><sup><a href="#cite-7">[7]</a></sup></li>
-  <li><strong>4月7日</strong>：打破26天沉默，发表书面悼词悼念遇害的革命卫队情报主管哈德米；同日有情报报告称其处于昏迷状态（未获证实）<sup><a href="#cite-14">[14]</a></sup></li>
-  <li><strong>7月2日</strong>：就父亲葬礼发声，称"有幸在父亲殉难后瞻仰了他的遗体，看到的是一座坚韧不拔的山峰"<sup><a href="#cite-2">[2]</a></sup></li>
-  <li><strong>7月3-5日</strong>：<span class="tag-danger">因安全原因未出席葬礼</span>，由岳父哈达达德勒代表家族出席<sup><a href="#cite-2">[2]</a></sup>。葬礼仪式总部秘书普尔贾姆希迪安被问及穆杰塔巴是否出席时回应"最高领导人是否出席的问题不在我的职权范围之内"<sup><a href="#cite-37">[37]</a></sup></li>
-  <li><strong>7月4日（NYT）</strong>：《纽约时报》援引两名革命卫队成员和一名参与葬礼筹划人士称，穆杰塔巴希望出席7月9日马什哈德下葬仪式并为父亲诵念悼词，但安全官员已否决该想法，理由是以色列可能借机暗杀或追踪其藏身地点<sup><a href="#cite-36">[36]</a></sup></li>
-  <li><strong>以方威胁</strong>：内塔尼亚胡认为穆杰塔巴仍活着但藏身地堡；以防长卡茨将其列入"定点清除名单"<sup><a href="#cite-8">[8]</a></sup><sup><a href="#cite-15">[15]</a></sup>。外媒报道穆杰塔巴在空袭中失去至少一条腿、严重内伤，可能处于昏迷状态，但伊朗官方坚称其仍在行使职权，仅通过两份书面声明和一段AI生成视频露面<sup><a href="#cite-26">[26]</a></sup></li>
-</ul>
-</div>
-
-<!-- ============ 安全态势 ============ -->
-<h2>安全态势</h2>
-<div class="card">
-<table>
-  <tr><th>维度</th><th>详情</th></tr>
-  <tr><td>空域管制</td><td>伊朗民航组织6月22日宣布7月4日至9日实施航班管制：7月4-5日德黑兰梅赫拉巴德机场及伊玛目霍梅尼国际机场以有限容量运行；7月6日德黑兰空域全面升级限制、暂停所有旅客运输；7月7-8日德黑兰各机场受限、库姆省实施通用航空飞行限制；7月8-9日马什哈德机场运营受限、9日当日停止旅客运输<sup><a href="#cite-29">[29]</a></sup></td></tr>
-  <tr><td>武装力量</td><td>武装部队进入最高战备状态；哈塔姆安比亚中央总部司令阿卜杜拉希警告美以"切勿打错算盘"，任何威胁和侵略都将遭严厉回击<sup><a href="#cite-1">[1]</a></sup>。革命卫队3日声明称大规模参与能展现"面对外部压力时的团结、韧性和决心"<sup><a href="#cite-19">[19]</a></sup>。革命卫队总司令瓦希迪7月2日晚坐于哈梅内伊灵柩旁高调亮相，系2月战争爆发以来首次公开露面；路透社分析称其已成伊朗战后决策圈最核心人物之一，与穆杰塔巴保持密切个人联系，其露面某种程度上弥补了穆杰塔巴缺席留下的"权力空白感"<sup><a href="#cite-37">[37]</a></sup></td></tr>
-  <tr><td>医疗保障</td><td>调集2500辆救护车、21架直升机、100架无人机、数千名救援人员；德黑兰20余家医院、50万升静脉注射液、2万间教室待命<sup><a href="#cite-1">[1]</a></sup></td></tr>
-  <tr><td>踩踏防范</td><td>安保级别前所未有，重点防范1989年霍梅尼葬礼和2020年苏莱曼尼葬礼中发生的致命人群踩踏事件重演；重点风险为极端高温与人群过密<sup><a href="#cite-31">[31]</a></sup></td></tr>
-  <tr><td>后勤保障</td><td>广场6000余个喷头洒水降温；军队烘焙5000万个面包、部署16个流动面包店；700余个临时停车区开放；游行附近禁止私家车通行<sup><a href="#cite-1">[1]</a></sup></td></tr>
-  <tr><td>以方威胁</td><td>以色列防长卡茨下令军队做好独立行动准备，公开将穆杰塔巴列为"死亡目标"<sup><a href="#cite-8">[8]</a></sup><sup><a href="#cite-9">[9]</a></sup>。以军宣称已锁定并更新暗杀名单，扬言近期发起"斩首行动"<sup><a href="#cite-22">[22]</a></sup></td></tr>
-  <tr><td>反渗透排查</td><td>伊方安全部门担忧以色列摩萨德特工已混入悼念人群伺机行动，葬礼期间加强人群甄别与电子信号排查；7月5日报道称伊方"不再轻视美以定点清除的决心"<sup><a href="#cite-33">[33]</a></sup></td></tr>
-  <tr><td>美方预警</td><td>《纽约时报》7月2日报道，美方认为以色列曾策划暗杀伊朗议长卡利巴夫和外长阿拉格齐，通过第三国向伊朗发出预警。4月卡利巴夫结束伊斯兰堡谈判返程时，伊朗安全部队因情报显示以军战机进入伊朗领空，紧急将其座机改降马什哈德<sup><a href="#cite-19">[19]</a></sup></td></tr>
-  <tr><td>美方表态</td><td>特朗普承诺葬礼期间约束以色列；美伊4月8日宣布临时停火（恰逢40天哀悼期满），正式谈判选在葬礼后启动<sup><a href="#cite-10">[10]</a></sup><sup><a href="#cite-11">[11]</a></sup></td></tr>
-</table>
-<div class="note">
-  <strong>同传提示：</strong>葬礼多次推迟的真正原因——Iran International报道，原计划3月举行的葬礼因安全担忧、外宾出席不确定性及接班问题未决而多次修改，反映出战时举办国葬的巨大风险<sup><a href="#cite-7">[7]</a></sup>。
-</div>
-</div>
-
-<!-- ============ 人群规模 ============ -->
-<h2>人群规模（官方 vs 外媒口径）</h2>
-<div class="card">
-<table>
-  <tr><th>来源</th><th>口径</th><th>说明</th></tr>
-  <tr><td class="tag-official">伊朗官方（综合）</td><td>多达3500万人</td><td>据《新阿拉伯人报》6月27日援引伊朗当局，预计横跨三座城市共3500万人参加<sup><a href="#cite-16">[16]</a></sup>。另有分析指出，3500万为德黑兰、库姆、马什哈德三场主场活动叠加伊拉克配套悼念场次六天内的累计预估，单日峰值以德黑兰首日1500万至2000万计<sup><a href="#cite-24">[24]</a></sup></td></tr>
-  <tr><td class="tag-official">伊朗官方（德黑兰）</td><td>1500万—2000万</td><td>德黑兰副市长塔瓦科利扎德称首都准备1500万至2000万吊唁者<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-12">[12]</a></sup></td></tr>
-  <tr><td class="tag-official">IRNA/新华社</td><td>数百万</td><td>7月4日公众告别仪式当日"数百万"民众参与<sup><a href="#cite-3">[3]</a></sup></td></tr>
-  <tr><td class="tag-foreign">AP（美联社）</td><td>millions（数百万）</td><td>7月4日报道德黑兰聚集数百万哀悼者<sup><a href="#cite-17">[17]</a></sup></td></tr>
-  <tr><td class="tag-foreign">专家估算</td><td>不少于百万</td><td>专家估算希望送行人数不少于百万人<sup><a href="#cite-1">[1]</a></sup></td></tr>
-</table>
-<div class="note note-gold">
-  <strong>口径差异提示：</strong>官方"3500万"为全程多城市累计预估，外媒多引用单日"数百万"。同传解说时建议说明"据伊朗官方预计"或"据美联社报道"以区分信源。
-</div>
-</div>
-
-<!-- ============ 国际反应 ============ -->
-<h2>国际反应与联合国动态</h2>
-<div class="card">
-<ul class="inline">
-  <li><strong>美国</strong>：特朗普对伊朗举国哀悼规模表示"惊讶"，承诺葬礼期间约束以色列；美伊4月8日临时停火，正式谈判定于葬礼后启动<sup><a href="#cite-10">[10]</a></sup><sup><a href="#cite-11">[11]</a></sup>。7月1日美伊在多哈完成低级别间接技术性会谈，争议焦点包括霍尔木兹海峡通行费及解冻伊朗海外资金（传涉30亿美元，美方否认达成共识）<sup><a href="#cite-19">[19]</a></sup>。卡塔尔外交部发言人安萨里确认，美伊暂停的卡塔尔谈判将于7月9日安葬仪式结束后"尽早"重启<sup><a href="#cite-37">[37]</a></sup></li>
-  <li><strong>以色列</strong>：防长卡茨将穆杰塔巴列入"死亡名单"，下令军队做好独立行动准备；以方在联合国安理会表示"外交已穷尽"<sup><a href="#cite-8">[8]</a></sup><sup><a href="#cite-18">[18]</a></sup>。美媒报道以方曾密谋暗杀伊朗谈判代表，企图破坏美伊谅解备忘录<sup><a href="#cite-19">[19]</a></sup></li>
-  <li><strong>俄罗斯</strong>：普京致唁电；梅德韦杰夫谴责暗杀为"野蛮行径"，称违反国际法和联合国宪章，并表示"伊朗终将战胜美国"<sup><a href="#cite-13">[13]</a></sup><sup><a href="#cite-20">[20]</a></sup>。佩泽希齐扬提议通过上合组织、金砖国家和欧亚经济联盟深化合作<sup><a href="#cite-20">[20]</a></sup></li>
-  <li><strong>巴基斯坦</strong>：总理夏巴兹亲赴德黑兰出席葬礼，同时担任美伊谈判斡旋方，与卡塔尔分别在多哈与美伊代表会谈<sup><a href="#cite-19">[19]</a></sup></li>
-  <li><strong>联合国安理会</strong>：伊朗外长阿拉格齐致函联合国秘书长和安理会主席，援引《联合国宪章》第51条，敦促采取紧急有效措施；以色列大使埃尔丹在安理会表示"外交已穷尽"，为单方面军事行动辩护<sup><a href="#cite-18">[18]</a></sup><sup><a href="#cite-25">[25]</a></sup>。7月2日伊朗再次向联合国高层机构递交正式外交信函，就以色列官员针对伊朗最高领袖发表的公开威胁言论提出严正抗议，由伊朗常驻联合国代表伊拉瓦尼提交，伊方将其定性为"国家恐怖主义行径"<sup><a href="#cite-34">[34]</a></sup>。此前联合国秘书长古特雷斯在紧急安理会会议中谴责美以空袭违反国际法及《联合国宪章》，警告否则将面临"更广泛冲突"<sup><a href="#cite-35">[35]</a></sup>。<strong>7月5日，安理会再次举行紧急公开会议</strong>，美伊代表激烈交锋：美国常驻联合国代表华尔兹指责伊朗违背谅解备忘录中确保霍尔木兹海峡及国际水道开放的承诺；伊朗常驻代表伊拉瓦尼反击称美以军事行动才是危机根源，重申依据《联合国宪章》行使自卫权，并指责美国海上封锁为"集体惩罚"，伊朗仍致力于执行备忘录但前提是美方忠实履约<sup><a href="#cite-39">[39]</a></sup></li>
-</ul>
-</div>
-
-<!-- ============ 背景 ============ -->
-<h2>背景</h2>
-<div class="card">
-  <p>伊朗最高领袖阿里·哈梅内伊于2026年2月28日在美国与以色列对德黑兰的联合空袭中遇害，部分家人同时遇难。其次子穆杰塔巴在空袭中幸免，3月8日继任最高领袖。因处于战时状态、空域高度紧张，官方国葬自3月推迟至7月举行。4月曾举行小规模纪念活动<sup><a href="#cite-7">[7]</a></sup>。</p>
-  <div class="note note-blue">
-    <strong>日程总览：</strong>7月3日德黑兰遗体告别启幕 → 7月4-5日德黑兰公众悼念 → 7月6日德黑兰送葬游行 → 7月7日库姆殡礼 → 7月8日伊拉克纳杰夫/卡尔巴拉跨国送葬 → 7月9日马什哈德伊玛目礼萨圣陵安葬。
-  </div>
-</div>
-
-<!-- ============ Sources ============ -->
-<h2>Sources</h2>
-<ol class="src-list">
-  <li id="cite-1">凤凰网/每日经济新闻：《哈梅内伊遗体告别仪式上，伊朗总统泪洒现场，议长哭到身体不停颤抖；穆杰塔巴未出席！葬礼细节》，2026-07-04 <a href="https://news.ifeng.com/c/8uUOPGXOgBq" target="_blank">news.ifeng.com</a></li>
-  <li id="cite-2">凤凰网/极目新闻：《伊朗官员：出于安全考虑，新任最高领袖穆杰塔巴不会出席哈梅内伊告别仪式》，2026-07-03 <a href="https://news.ifeng.com/c/8uSfc9ICTKv" target="_blank">news.ifeng.com</a></li>
-  <li id="cite-3">新华网：《伊朗举行已故最高领袖遗体公众告别仪式》，2026-07-04 <a href="http://www.xinhuanet.com/world/20260704/733c4bbd997b4dd09ffcaf8ec695c7c5/c.html" target="_blank">xinhuanet.com</a></li>
-  <li id="cite-4">人民网/新华社：《现场直击|伊朗民众泪别哈梅内伊》，2026-07-05 <a href="http://world.people.com.cn/n1/2026/0705/c1002-40753599.html" target="_blank">people.com.cn</a></li>
-  <li id="cite-5">中国网：《多国代表出席仪式，伊朗隆重告别哈梅内伊》，2026-07-04 <a href="http://news.china.com.cn/2026-07/04/content_118582495.shtml" target="_blank">china.com.cn</a></li>
-  <li id="cite-6">人民网/新华社：《伊朗称逾30国官员拟出席已故最高领袖悼念活动》，2026-07-01 <a href="http://world.people.com.cn/n1/2026/0701/c1002-40751502.html" target="_blank">people.com.cn</a></li>
-  <li id="cite-7">Iran International：《Why Khamenei's funeral keeps changing》，2026 <a href="https://www.iranintl.com/en/202603069419" target="_blank">iranintl.com</a></li>
-  <li id="cite-8">网易：《国葬变猎场？以色列下必杀令，目标哈梅内伊葬礼，新领袖命悬一线》，2026-07-04 <a href="http://m.163.com/dy/article/L117MVBD0556BP74.html" target="_blank">163.com</a></li>
-  <li id="cite-9">网易：《以防长当众下必杀令，新领袖连面都不敢露》，2026-07-03 <a href="http://m.163.com/dy/article_cambrian/L0UTVH6Q0556BQG2.html" target="_blank">163.com</a></li>
-  <li id="cite-10">搜狐：《100国参与哈梅内伊国葬，特朗普把话挑明，中方宣布出席规格》，2026-07 <a href="https://m.sohu.com/a/1045665097_122157668/" target="_blank">sohu.com</a></li>
-  <li id="cite-11">观察者网/头条：《特朗普：伊朗举国哀悼哈梅内伊，让我感到惊讶》，2026-07 <a href="http://m.toutiao.com/group/7658839943665467958/" target="_blank">toutiao.com</a></li>
-  <li id="cite-12">NDTV Profit / IRIB：《Iran Plans Three-Day Funeral For 'Martyred Imam' Ali Khamenei; Burial Likely In Mashhad》，2026 <a href="https://www.ndtvprofit.com/world/iran-plans-three-day-funeral-for-martyred-imam-ali-khamenei-burial-likely-in-mashhad-11582546" target="_blank">ndtvprofit.com</a></li>
-  <li id="cite-13">Ilkha：《Vladimir Putin offers condolences to Iran over death of Ali Khamenei》（含梅德韦杰夫声明），2026 <a href="https://www.ilkha.com/english/world/vladimir-putin-offers-condolences-to-iran-over-death-of-ali-khamenei-516602" target="_blank">ilkha.com</a></li>
-  <li id="cite-14">House of Saud：《Khamenei Breaks 26-Day Silence With Eulogy as Intel Reports Say He Is Unconscious》，2026-04-07 <a href="https://houseofsaud.com/mojtaba-khamenei-breaks-silence-khademi-eulogy-deadline/" target="_blank">houseofsaud.com</a></li>
-  <li id="cite-15">Global Repute News：《Mojtaba Khamenei Alive Dead Iran Supreme Leader 2026: Fact Check》，2026 <a href="https://globalreputenews.com/post/mojtaba-khamenei-alive-dead-iran-supreme-leader-2026-fact-check-finds-no-confirmed-evidence-of-death-despite-two-month-public-absence-" target="_blank">globalreputenews.com</a></li>
-  <li id="cite-16">网易/新阿拉伯人报：《伊朗3500万人参加领袖告别式，规模将破人类纪录》，2026-06-27 <a href="https://c.m.163.com/news/a/L0JT05TO0556CFOT.html" target="_blank">163.com</a></li>
-  <li id="cite-17">AP/头条：《美国庆生，伊朗万人送葬喊复仇——特朗普说"给你一周办葬礼"》，2026-07-04 <a href="http://m.toutiao.com/group/7658642244701848114/" target="_blank">toutiao.com</a></li>
-  <li id="cite-18">Revista Fórum：《A morte de Khamenei e o fim da ilusão da segurança coletiva》（含以色列安理会表态），2026 <a href="https://revistaforum.com.br/opiniao/a-morte-de-khamenei-e-o-fim-da-ilusao-da-seguranca-coletiva/" target="_blank">revistaforum.com.br</a></li>
-  <li id="cite-19">凤凰网/环球时报：《多国代表出席葬礼仪式，伊朗隆重告别哈梅内伊》（含法新社、卫报报道），2026-07-04 <a href="https://mil.ifeng.com/c/8uUL9OHbg1j" target="_blank">mil.ifeng.com</a></li>
-  <li id="cite-20">凤凰网/观察者网：《出席哈梅内伊葬礼，梅德韦杰夫发声：伊朗终将战胜美国》，2026-07-04 <a href="https://news.ifeng.com/c/8uUV6js1fNc" target="_blank">news.ifeng.com</a></li>
-  <li id="cite-21">人民网/人民日报：《何维代表中方出席伊朗已故最高领袖哈梅内伊葬礼》，2026-07-04 <a href="http://cpc.people.com.cn/n1/2026/0704/c64094-40753299.html" target="_blank">cpc.people.com.cn</a></li>
-  <li id="cite-22">搜狐：《以军扬言轰炸德黑兰，多国代表齐聚不退，美国暗中向伊朗通风报信》，2026-07-04 <a href="https://m.sohu.com/a/1045785694_122656896/" target="_blank">sohu.com</a></li>
-  <li id="cite-23">头条：《哈梅内伊葬礼正式启动》（含欧洲未获邀请、印度代表规格等信息），2026-07 <a href="http://m.toutiao.com/group/7658553587563299334/" target="_blank">toutiao.com</a></li>
-  <li id="cite-24">头条：《千万人全民送别！哈梅内伊葬礼，预估3500万人到场》（含官方3500万累计口径区分），2026-07 <a href="http://m.toutiao.com/group/7657800753448288795/" target="_blank">toutiao.com</a></li>
-  <li id="cite-25">Caliber.az：《Iran urges UN to take urgent action after death of Supreme Leader》（伊朗致函联合国安理会），2026 <a href="https://caliber.az/en/post/iran-urges-un-to-take-urgent-action-after-death-of-supreme-leader" target="_blank">caliber.az</a></li>
-  <li id="cite-26">网易：《刺杀计划彻底落空！伊朗最高领袖全程隐身，毅然缺席父亲葬礼》（含穆杰塔巴伤情外媒报道），2026 <a href="http://m.163.com/dy/article_cambrian/L10JR74705566XFD.html" target="_blank">163.com</a></li>
-  <li id="cite-27">凤凰卫视资讯台/凤凰网：《凤凰女记者：正式送别哈梅内伊时，德黑兰所有商店禁止开门》（凤凰卫视驻伊朗记者李睿现场报道），2026-07-03 <a href="https://news.ifeng.com/c/8uT09cv6xvz" target="_blank">news.ifeng.com</a></li>
-  <li id="cite-28">头条：《哈梅内伊葬礼仪式开启，其身旁放着一具小棺材，是他14个月大孙女》（含5具灵柩、"世纪葬礼"、印度代表、"复仇"口号等信息），2026-07 <a href="http://m.toutiao.com/group/7658888300861588002/" target="_blank">toutiao.com</a></li>
-  <li id="cite-29">央视新闻：《伊朗将在已故最高领袖葬礼期间实施航班管制》（伊朗民航组织7月4-9日航班管制详情），2026-06-22 <a href="http://m.toutiao.com/group/7654288483141403172/" target="_blank">toutiao.com</a></li>
-  <li id="cite-30">Turkiye Today：《Iran plans 3-city funeral for former leader Khamenei》（含巴勒斯坦大街住所遭袭、妻子儿媳外孙女遇难信息），2026 <a href="https://www.turkiyetoday.com/region/iran-plans-3-city-funeral-for-former-leader-khamenei-3221161" target="_blank">turkiyetoday.com</a></li>
-  <li id="cite-31">网易：《哈梅内伊6天国葬具体流程公布，安保级别前所未有》（含踩踏防范、1989霍梅尼葬礼和2020苏莱曼尼葬礼踩踏事件），2026-06-30 <a href="https://c.m.163.com/news/a/L0PUCCGA0550HXM1.html" target="_blank">163.com</a></li>
-  <li id="cite-32">央视新闻/总台现场直击：《总台现场直击丨伊朗为已故最高领袖哈梅内伊举行告别仪式》（总台记者魏然，德黑兰连续三天仪式、预计1500万至2000万民众），2026-07-04 <a href="https://content-static.cctvnews.cctv.com/snow-book/index.html?item_id=13513637439808639275" target="_blank">cctvnews.cctv.com</a></li>
-  <li id="cite-33">搜狐：《7月5日：以色列摩萨德特工早已潜伏待命，恐怕已混入悼念人群，伊朗不再轻视美以定点清除的决心，伊方官员透露穆杰塔巴将缺席父亲葬礼》，2026-07-05 <a href="https://m.sohu.com/a/1045950122_122304857/" target="_blank">sohu.com</a></li>
-  <li id="cite-34">瓦纳通讯社/网易：《以色列密谋刺杀哈梅内伊，伊朗向联合国申诉，中东局势紧张》（伊朗7月2日向联合国递交正式外交信函，常驻联合国代表伊拉瓦尼提交），2026-07-02 <a href="https://c.m.163.com/news/a/L0RBHQPF0556DOZ2.html" target="_blank">163.com</a></li>
-  <li id="cite-35">AP News：《US and Israel clash with Iran at emergency Security Council meeting. UN chief condemns attacks》（联合国秘书长古特雷斯谴责美以空袭违反国际法及联合国宪章），2026 <a href="https://apnews.com/article/iran-israel-us-un-security-council-airstrikes-9140bca9241fb99be8cb3cff2c650741" target="_blank">apnews.com</a></li>
-  <li id="cite-36">鲁中晨报/东西问（头条）：《哈梅内伊灵柩下方被布置成其生前公开发表讲话场景，蓝色幕布悬挂霍梅尼遗像，旁边放置一把标志性椅子；穆杰塔巴暂未现身与以色列暗杀相关》（含NYT穆杰塔巴希望出席7月9日下葬诵悼词被安全官员否决、7月3日伊朗航空655号班机被击落38周年纪念、13时30分35℃高温告别），2026-07-04 <a href="http://m.toutiao.com/group/7658816822023668287/" target="_blank">toutiao.com</a></li>
-  <li id="cite-37">网易/雪儿爱追剧：《伊朗为哈梅内伊举行盛大葬礼，中俄代表站第一排，沙特不请自来》（含沙特副外长赫里吉未受邀现身、巴基斯坦陆军参谋长穆尼尔随行、格鲁吉亚总统及阿富汗塔利班外长等多国代表名单、送葬路线10公里伊玛目霍赛因广场至阿扎迪广场、灵柩覆盖卡尔巴拉圣旗、卡塔尔谈判7月9日后重启、瓦希迪路透社分析、普尔贾姆希迪安回应），2026-07-05 <a href="http://m.163.com/dy/article/L12L8PAK055694VF.html" target="_blank">163.com</a></li>
-  <li id="cite-38">华尔街见闻/头条：《伊朗举行已故最高领袖葬礼，何维代表中方出席，沙特代表团意外现身，伊方再提海峡"共管"》（沙特副外长Waleed El Khereiji率团出席），2026-07 <a href="http://m.toutiao.com/group/7658389724393931307/" target="_blank">toutiao.com</a></li>
-  <li id="cite-39">搜狐/香巧车评家：《哈梅内伊遗体告别仪式举行！联合国安理会举行紧急公开会，美伊激烈交锋！》（美常驻联合国代表华尔兹与伊朗常驻代表伊拉瓦尼就霍尔木兹海峡通行及谅解备忘录执行激烈交锋），2026-07-05 <a href="https://m.sohu.com/a/1046044326_121981405/" target="_blank">sohu.com</a></li>
-  <li id="cite-40">网易/全球吃瓜现场（综合法新社、IRNA）：《伊朗领导人与外国政要吊唁哈梅内伊，遗体在德黑兰停灵供人瞻仰》（含哈马斯真主党吊唁代表团、亚美尼亚总理帕希尼扬、伊拉克库区主席巴尔扎尼、约40国代表团及100余团体、大穆萨拉宗教建筑群、阿扎迪大道拆除路障、红新月会帐篷、部分居民离城），2026-07-04 <a href="https://c.m.163.com/news/a/L118IDLV0556AP19.html" target="_blank">163.com</a></li>
-  <li id="cite-41">新华网：《现场直击｜伊朗民众泪别哈梅内伊》（新华社记者沙达提7月4日清晨6时现场直击，民众挥国旗手持哈梅内伊与穆杰塔巴照片、悼念者采访），2026-07-05 <a href="http://www.xinhuanet.com/world/20260705/a68d9ab9b4894d058612b68b9615fb77/c.html" target="_blank">xinhuanet.com</a></li>
-</ol>
-
-<div class="footer">
-  凤凰卫视资讯台 · 哈梅内伊国葬实时简报 · 仅供本台同传解说参考<br>
-  数据截至 2026-07-05 15:20（北京时间） | 在线版：<a href="https://zhaoparkerstudio.github.io/Real-time-Info-Update-of-Khamenei-State-Funeral-for-Phoenix-TV/" style="color:var(--blue)">GitHub Pages</a>
-</div>
-
 </body>
 </html>
