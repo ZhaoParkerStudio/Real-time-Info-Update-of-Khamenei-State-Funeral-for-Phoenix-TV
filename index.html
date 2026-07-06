@@ -8,342 +8,133 @@
   :root {
     --phoenix-red: #C8102E;
     --phoenix-dark: #8B0000;
-    --phoenix-gold: #D4A017;
+    --phoenix-gold: #D4AF37;
     --bg-dark: #1a1a2e;
     --bg-card: #16213e;
-    --bg-light: #f5f5f5;
-    --text-primary: #e0e0e0;
-    --text-secondary: #a0a0a0;
-    --text-dark: #222;
-    --accent-blue: #0f3460;
-    --accent-green: #2d6a4f;
-    --border-color: #e74c3c;
+    --bg-light: #0f3460;
+    --text-primary: #e8e8e8;
+    --text-secondary: #b0b0b0;
+    --text-accent: #e94560;
+    --border-color: #2a2a4a;
+    --done-color: #4CAF50;
+    --now-color: #FF9800;
+    --upcoming-color: #6c757d;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", "WenQuanYi Micro Hei", "Hiragino Sans GB", sans-serif;
-    background: var(--bg-light);
-    color: var(--text-dark);
+    background: var(--bg-dark);
+    color: var(--text-primary);
     line-height: 1.8;
-    font-size: 16px;
+    font-size: 15px;
   }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
   /* Status Bar */
   .status-bar {
-    background: linear-gradient(135deg, var(--phoenix-red), var(--phoenix-dark));
-    color: white;
-    padding: 10px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    background: linear-gradient(135deg, var(--phoenix-dark), var(--bg-light));
+    border-bottom: 3px solid var(--phoenix-gold);
+    padding: 14px 0;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.5);
   }
-  .status-bar .left { display: flex; align-items: center; gap: 12px; }
-  .status-bar .phoenix-logo {
-    font-weight: 900;
-    font-size: 18px;
-    letter-spacing: 2px;
-    background: rgba(255,255,255,0.15);
-    padding: 2px 10px;
-    border-radius: 4px;
-  }
-  .status-bar .live-dot {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: #ff4444;
-    border-radius: 50%;
-    animation: pulse 1.5s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-  .status-bar .update-time {
-    font-weight: 600;
-    background: rgba(0,0,0,0.2);
-    padding: 3px 10px;
-    border-radius: 4px;
-  }
-  /* Header */
-  .header {
-    background: var(--bg-dark);
-    color: white;
-    padding: 32px 24px 24px;
-    text-align: center;
-    border-bottom: 3px solid var(--phoenix-red);
-  }
-  .header h1 {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: 1px;
-  }
-  .header .subtitle {
-    color: var(--text-secondary);
-    font-size: 14px;
-  }
-  .header .meta-tags {
-    margin-top: 12px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .header .meta-tags span {
-    background: rgba(255,255,255,0.1);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 13px;
-    border: 1px solid rgba(255,255,255,0.2);
-  }
-  /* Container */
-  .container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 24px 20px 60px;
-  }
+  .status-bar .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+  .status-bar .title { font-size: 20px; font-weight: 700; color: var(--phoenix-gold); letter-spacing: 1px; }
+  .status-bar .title small { font-size: 12px; color: var(--text-secondary); font-weight: 400; display: block; margin-top: 2px; }
+  .status-bar .meta { text-align: right; font-size: 13px; color: var(--text-secondary); }
+  .status-bar .meta .update-time { color: var(--phoenix-gold); font-weight: 600; font-size: 15px; }
+  .live-dot { display: inline-block; width: 10px; height: 10px; background: var(--text-accent); border-radius: 50%; animation: pulse 1.5s infinite; margin-right: 5px; vertical-align: middle; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
   /* Section */
-  .section {
-    background: white;
+  section { padding: 30px 0; border-bottom: 1px solid var(--border-color); }
+  section:last-child { border-bottom: none; }
+  h2 { font-size: 22px; color: var(--phoenix-gold); margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border-color); display: flex; align-items: center; gap: 8px; }
+  h2 .icon { font-size: 26px; }
+  h3 { font-size: 17px; color: var(--text-accent); margin: 18px 0 10px; }
+
+  /* Cards */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
-    padding: 24px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-    border-left: 4px solid var(--phoenix-red);
-  }
-  .section h2 {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--phoenix-dark);
-    margin-bottom: 16px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #f0f0f0;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section h2 .icon { font-size: 26px; }
-  .section h3 {
-    font-size: 17px;
-    font-weight: 600;
-    color: #333;
-    margin: 16px 0 8px;
-  }
-  .section p {
-    margin-bottom: 10px;
-    color: #333;
-    text-align: justify;
-  }
-  /* Today Focus */
-  .focus-box {
-    background: linear-gradient(135deg, #fff5f5, #fff);
-    border: 1px solid #ffcdd2;
-    border-radius: 8px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-  }
-  .focus-box .focus-time {
-    display: inline-block;
-    background: var(--phoenix-red);
-    color: white;
-    padding: 2px 10px;
-    border-radius: 4px;
-    font-size: 13px;
-    font-weight: 600;
-    margin-bottom: 8px;
-  }
-  /* Timeline */
-  .timeline {
-    position: relative;
-    padding-left: 30px;
-  }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: #e0e0e0;
-    border-radius: 2px;
-  }
-  .timeline-item {
-    position: relative;
-    margin-bottom: 20px;
-    padding: 14px 18px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #eee;
-  }
-  .timeline-item::before {
-    content: '';
-    position: absolute;
-    left: -24px;
-    top: 18px;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: #ccc;
-    border: 3px solid white;
-    box-shadow: 0 0 0 2px #ccc;
-  }
-  .timeline-item.done::before {
-    background: var(--accent-green);
-    box-shadow: 0 0 0 2px var(--accent-green);
-  }
-  .timeline-item.now::before {
-    background: var(--phoenix-red);
-    box-shadow: 0 0 0 2px var(--phoenix-red);
-    animation: pulse 1.5s infinite;
-  }
-  .timeline-item.upcoming::before {
-    background: #bbb;
-    box-shadow: 0 0 0 2px #bbb;
-  }
-  .timeline-item.done { border-left: 3px solid var(--accent-green); }
-  .timeline-item.now { border-left: 3px solid var(--phoenix-red); background: #fff5f5; }
-  .timeline-item .timeline-date {
-    font-weight: 700;
-    font-size: 16px;
-    color: var(--phoenix-dark);
-    margin-bottom: 4px;
-  }
-  .timeline-item .timeline-badge {
-    display: inline-block;
-    font-size: 11px;
-    padding: 1px 8px;
-    border-radius: 10px;
-    font-weight: 600;
-    margin-left: 8px;
-    vertical-align: middle;
-  }
-  .badge-done { background: #d4edda; color: #155724; }
-  .badge-now { background: #f8d7da; color: #721c24; }
-  .badge-upcoming { background: #e2e3e5; color: #383d41; }
-  .timeline-item .timeline-content {
-    margin-top: 6px;
-    font-size: 15px;
-    color: #444;
-  }
-  /* Info Cards */
-  .info-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 16px;
-    margin-top: 12px;
-  }
-  .info-card {
-    background: #f8f9fa;
-    border-radius: 8px;
-    padding: 16px;
-    border-top: 3px solid var(--accent-blue);
-  }
-  .info-card .card-title {
-    font-weight: 700;
-    color: var(--accent-blue);
-    font-size: 15px;
-    margin-bottom: 8px;
-  }
-  .info-card .card-content {
-    font-size: 14px;
-    color: #555;
-  }
-  /* Comparison Table */
-  .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-    font-size: 15px;
-  }
-  .compare-table th, .compare-table td {
-    padding: 10px 14px;
-    text-align: left;
-    border: 1px solid #ddd;
-  }
-  .compare-table th {
-    background: var(--accent-blue);
-    color: white;
-    font-weight: 600;
-  }
-  .compare-table tr:nth-child(even) { background: #f8f9fa; }
-  .compare-table .official { color: var(--phoenix-dark); font-weight: 600; }
-  .compare-table .foreign { color: #0d47a1; font-weight: 600; }
-  /* Tag */
-  .tag {
-    display: inline-block;
-    background: #e3f2fd;
-    color: #1565c0;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 13px;
-    margin: 2px;
-  }
-  .tag-red { background: #ffebee; color: #c62828; }
-  .tag-green { background: #e8f5e9; color: #2e7d32; }
-  .tag-gold { background: #fff8e1; color: #e65100; }
-  /* Alert Box */
-  .alert-box {
-    background: #fff3cd;
-    border: 1px solid #ffc107;
-    border-radius: 8px;
-    padding: 14px 18px;
-    margin: 12px 0;
-    font-size: 14px;
-  }
-  .alert-box strong { color: #856404; }
-  .alert-danger {
-    background: #f8d7da;
-    border-color: #dc3545;
-  }
-  .alert-danger strong { color: #721c24; }
-  /* Sources */
-  .sources {
-    background: #222;
-    color: #ccc;
-    border-radius: 10px;
-    padding: 24px;
-    margin-top: 20px;
-  }
-  .sources h2 {
-    color: white;
-    border-bottom-color: #444;
-  }
-  .sources ol {
-    padding-left: 20px;
-    line-height: 2.2;
-  }
-  .sources ol li {
-    font-size: 14px;
-    color: #aaa;
-  }
-  .sources ol li a {
-    color: #64b5f6;
-    text-decoration: none;
-  }
-  .sources ol li a:hover { text-decoration: underline; }
-  /* Superscript citation */
-  sup a {
-    color: var(--phoenix-red);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 11px;
-  }
-  sup a:hover { text-decoration: underline; }
-  /* Footer */
-  .footer {
-    text-align: center;
     padding: 20px;
-    color: #999;
-    font-size: 13px;
-    border-top: 1px solid #eee;
+    margin-bottom: 16px;
+    transition: border-color 0.3s;
   }
+  .card:hover { border-color: var(--phoenix-gold); }
+  .card .card-title { font-size: 16px; font-weight: 700; color: var(--phoenix-gold); margin-bottom: 10px; }
+  .card .card-date { font-size: 12px; color: var(--text-secondary); display: inline-block; margin-left: 8px; }
+
+  /* Focus box */
+  .focus-box {
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-light));
+    border-left: 4px solid var(--phoenix-red);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .focus-box .tag { display: inline-block; background: var(--phoenix-red); color: #fff; font-size: 12px; padding: 2px 10px; border-radius: 12px; margin-bottom: 8px; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 3px; background: var(--border-color); border-radius: 2px; }
+  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -27px; top: 4px; width: 16px; height: 16px;
+    border-radius: 50%; border: 3px solid var(--border-color); background: var(--bg-dark);
+  }
+  .timeline-item.done::before { border-color: var(--done-color); background: var(--done-color); }
+  .timeline-item.now::before { border-color: var(--now-color); background: var(--now-color); box-shadow: 0 0 12px var(--now-color); animation: pulse 1.5s infinite; }
+  .timeline-item .tl-date { font-size: 13px; color: var(--text-secondary); margin-bottom: 4px; }
+  .timeline-item .tl-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .timeline-item.done .tl-title { color: var(--done-color); }
+  .timeline-item.now .tl-title { color: var(--now-color); }
+  .timeline-item.upcoming .tl-title { color: var(--upcoming-color); }
+  .timeline-item .tl-content { font-size: 14px; color: var(--text-secondary); }
+  .timeline-item .tl-status { display: inline-block; font-size: 11px; padding: 1px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+  .tl-status.done { background: rgba(76,175,80,0.2); color: var(--done-color); }
+  .tl-status.now { background: rgba(255,152,0,0.2); color: var(--now-color); }
+  .tl-status.upcoming { background: rgba(108,117,125,0.2); color: var(--upcoming-color); }
+
+  /* Tags */
+  .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+  .tag-item { font-size: 12px; padding: 3px 12px; border-radius: 12px; background: rgba(212,175,55,0.15); color: var(--phoenix-gold); border: 1px solid rgba(212,175,55,0.3); }
+
+  /* Data compare */
+  .compare-table { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  .compare-table th, .compare-table td { padding: 10px 14px; text-align: left; border: 1px solid var(--border-color); font-size: 14px; }
+  .compare-table th { background: var(--bg-light); color: var(--phoenix-gold); font-weight: 700; }
+  .compare-table .official { color: #4FC3F7; }
+  .compare-table .foreign { color: #FFB74D; }
+
+  /* Info grid */
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin: 16px 0; }
+  .info-item { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; }
+  .info-item .label { font-size: 12px; color: var(--text-secondary); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .info-item .value { font-size: 15px; color: var(--text-primary); font-weight: 600; }
+
+  /* Alert box */
+  .alert-box { background: rgba(200,16,46,0.1); border: 1px solid rgba(200,16,46,0.3); border-radius: 8px; padding: 16px; margin: 12px 0; }
+  .alert-box .alert-title { color: var(--text-accent); font-weight: 700; margin-bottom: 8px; font-size: 15px; }
+
+  /* Sources */
+  .sources ol { padding-left: 20px; }
+  .sources li { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; padding-left: 4px; line-height: 1.7; }
+  .sources li a { color: #64B5F6; text-decoration: none; word-break: break-all; }
+  .sources li a:hover { text-decoration: underline; }
+
+  /* Superscript citations */
+  sup a { color: var(--phoenix-gold); text-decoration: none; font-size: 11px; font-weight: 700; }
+  sup a:hover { text-decoration: underline; color: var(--text-accent); }
+
+  /* Footer */
+  footer { text-align: center; padding: 24px 0; color: var(--text-secondary); font-size: 12px; border-top: 1px solid var(--border-color); }
+
   /* Responsive */
-  @media (max-width: 600px) {
-    .header h1 { font-size: 22px; }
-    .section { padding: 16px; }
+  @media (max-width: 768px) {
+    .status-bar .container { flex-direction: column; text-align: center; }
+    .status-bar .meta { text-align: center; }
     .info-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -352,284 +143,290 @@
 
 <!-- Status Bar -->
 <div class="status-bar">
-  <div class="left">
-    <span class="phoenix-logo">凤凰卫视资讯台</span>
-    <span><span class="live-dot"></span> 同传解说参考简报</span>
-  </div>
-  <div class="update-time">最后更新：2026年7月7日 00:30 北京时间</div>
-</div>
-
-<!-- Header -->
-<div class="header">
-  <h1>伊朗已故最高领袖哈梅内伊国葬实时简报</h1>
-  <div class="subtitle">Ali Khamenei State Funeral Tracker | 2026年7月3日—9日 | 德黑兰 → 库姆 → 纳杰夫/卡尔巴拉 → 马什哈德</div>
-  <div class="meta-tags">
-    <span>遇害日期：2026年2月28日</span>
-    <span>国葬周期：7月3日—9日</span>
-    <span>最终安葬：马什哈德伊玛目礼萨圣陵</span>
-    <span>新任领袖：穆杰塔巴·哈梅内伊</span>
+  <div class="container">
+    <div class="title">
+      <span class="live-dot"></span>哈梅内伊国葬实时简报
+      <small>凤凰卫视资讯台 · 同传解说参考 · 2026年7月3日—9日</small>
+    </div>
+    <div class="meta">
+      <div>最后更新：<span class="update-time">2026-07-07 01:05 北京时间</span></div>
+      <div>当前焦点：7月6日德黑兰送葬游行结束 · 7月7日库姆殡礼即将开始</div>
+    </div>
   </div>
 </div>
 
 <div class="container">
 
-  <!-- 今日聚焦 -->
-  <div class="section">
-    <h2><span class="icon">📌</span> 今日聚焦（7月6日·德黑兰送葬游行）</h2>
-
-    <div class="focus-box">
-      <span class="focus-time">7月6日 06:00起（德黑兰当地时间）</span>
-      <h3>灵车穿行德黑兰市区，数百万民众沿途送行</h3>
-      <p>哈梅内伊及其4名遇害家人的灵柩包裹着伊朗国旗，装载于卡车上，自东向西缓慢穿行德黑兰市区。沿途哀悼者纷纷伸手触摸车厢，向灵车投掷头巾等随身物品以祈福<sup><a href="#cite-1">[1]</a></sup>。送葬仪式于当地时间6时开始，大批民众数小时前即已聚集<sup><a href="#cite-2">[2]</a></sup>。</p>
-      <p>组织者预计车队将在市区穿行10至12小时，全程约10公里，途经德黑兰最大的阿扎迪广场等地。负责当日葬礼活动的伊斯兰革命卫队高级将领哈桑·哈桑扎德呼吁公众"平静地前往阿扎迪广场"<sup><a href="#cite-1">[1]</a></sup>。</p>
-      <p>哀悼者手持伊朗国旗和哈梅内伊肖像，呼喊要求复仇和坚持抵抗的口号。伊朗伊斯兰共和国通讯社报道，沿途地铁站也挤满前来送别的人群<sup><a href="#cite-1">[1]</a></sup>。</p>
-    </div>
-
-    <div class="focus-box">
-      <span class="focus-time">安全警示</span>
-      <h3>官方吸取1989年霍梅尼葬礼踩踏教训</h3>
-      <p>伊朗官方希望避免1989年前任最高领袖霍梅尼葬礼时的混乱。当年上千万人参加葬礼，送葬车队被人群围住，灵柩一度从直升机上被拽下，踩踏导致多人死亡、数百人受伤<sup><a href="#cite-1">[1]</a></sup>。7月5日在伊玛目霍梅尼清真寺的悼念活动因人数过多延长一小时至晚10时，组织者在清真寺外设置大型混凝土路障以防踩踏<sup><a href="#cite-1">[1]</a></sup>。</p>
-    </div>
-
-    <div class="focus-box">
-      <span class="focus-time">关键人物动态</span>
-      <h3>穆杰塔巴·哈梅内伊仍未现身，三名儿子出席</h3>
-      <p>7月5日，哈梅内伊的三个儿子穆斯塔法、梅萨姆、马苏德出现在灵柩旁祈祷。但次子、新任最高领袖穆杰塔巴依旧不见踪影——他自2月底美以军事行动以来从未公开露面<sup><a href="#cite-1">[1]</a></sup>。</p>
-      <p>据《纽约时报》4日报道，穆杰塔巴希望参加9日在马什哈德的安葬仪式，但伊朗安全部门予以拒绝，担心以色列借机实施暗杀或追踪其行踪。消息源为两名伊朗伊斯兰革命卫队成员和一名参与葬礼安排的人员<sup><a href="#cite-1">[1]</a></sup>。</p>
-      <p>此外，伊斯兰革命卫队"圣城旅"行踪神秘的指挥官伊斯梅尔·卡尼罕见现身葬礼现场<sup><a href="#cite-1">[1]</a></sup>。</p>
+<!-- Background -->
+<section>
+  <h2><span class="icon">📌</span>背景概述</h2>
+  <div class="card">
+    <p>伊朗最高领袖阿里·哈梅内伊于<strong>2026年2月28日</strong>在美以联合空袭中遇害，终年86岁。其子穆杰塔巴·哈梅内伊于3月8日经专家会议推举为新任最高领袖<sup><a href="#cite-11">[11]</a></sup>。国葬因战事与安全因素推迟至7月举行，7月3日在德黑兰启幕，7月9日在马什哈德伊玛目礼萨圣陵最终安葬<sup><a href="#cite-6">[6]</a></sup>。</p>
+    <div class="tag-row">
+      <span class="tag-item">遇害日期：2026-02-28</span>
+      <span class="tag-item">国葬周期：7月3日—9日</span>
+      <span class="tag-item">新领袖：穆杰塔巴·哈梅内伊</span>
+      <span class="tag-item">最终安葬地：马什哈德伊玛目礼萨圣陵</span>
     </div>
   </div>
+</section>
 
-  <!-- 国葬日程时间线 -->
-  <div class="section">
-    <h2><span class="icon">📅</span> 国葬日程时间线（7月3日—9日）</h2>
-    <div class="timeline">
+<!-- Today's Focus -->
+<section id="focus">
+  <h2><span class="icon">🎯</span>今日聚焦</h2>
 
-      <div class="timeline-item done">
-        <div class="timeline-date">7月3日（周四）— 德黑兰遗体告别仪式 <span class="timeline-badge badge-done">已完成</span></div>
-        <div class="timeline-content">
-          哈梅内伊及其家属灵柩被送至德黑兰大清真寺（伊玛目霍梅尼清真寺）主祈祷厅，供民众与各国代表吊唁告别<sup><a href="#cite-5">[5]</a></sup>。伊朗总统佩泽希齐扬、议长卡利巴夫、司法总监埃杰伊及确定国家利益委员会主席拉里贾尼出席。伊斯兰革命卫队总司令瓦希迪自2月战事爆发以来首次公开露面<sup><a href="#cite-6">[6]</a></sup>。佩泽希齐扬闭眼流泪，卡利巴夫痛哭身体颤抖<sup><a href="#cite-4">[4]</a></sup>。约100个国家派遣官方代表团出席，包括至少8位国家元首、12国议长<sup><a href="#cite-6">[6]</a></sup><sup><a href="#cite-7">[7]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item done">
-        <div class="timeline-date">7月4日（周五）— 德黑兰公众悼念启幕 <span class="timeline-badge badge-done">已完成</span></div>
-        <div class="timeline-content">
-          清晨6时祈祷大厅开放，公众告别与悼念仪式正式开始<sup><a href="#cite-4">[4]</a></sup>。灵柩前摆放红色郁金香，天花板悬挂纸制蝴蝶装饰。悼念者将围巾抛向灵柩祈福，现场高呼"打倒美国""复仇"口号<sup><a href="#cite-7">[7]</a></sup>。日期恰逢美国独立250周年纪念日，具象征对照意义<sup><a href="#cite-7">[7]</a></sup>。巴基斯坦总理夏巴兹率团抵达德黑兰；俄罗斯特使梅德韦杰夫、中国全国人大常委会副委员长何维代表出席<sup><a href="#cite-5">[6]</a></sup>。德黑兰所有公私机构4日至6日暂停办公，空域自3日起部分管控<sup><a href="#cite-6">[6]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item done">
-        <div class="timeline-date">7月5日（周六）— 德黑兰公众悼念（第二天） <span class="timeline-badge badge-done">已完成</span></div>
-        <div class="timeline-content">
-          遗体继续停放在大清真寺供人瞻仰。悼念活动因大量人员参加延长一小时至晚10时<sup><a href="#cite-1">[1]</a></sup>。哈梅内伊三个儿子穆斯塔法、梅萨姆、马苏德在灵柩旁祈祷<sup><a href="#cite-1">[1]</a></sup>。组织者在清真寺外设置大型混凝土路障防踩踏，一些人挥舞旗帜要求对美国和以色列复仇<sup><a href="#cite-1">[1]</a></sup>。法新社采访39岁女子巴坎德："我们要求为我们深爱的人血债血偿"<sup><a href="#cite-1">[1]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item now">
-        <div class="timeline-date">7月6日（周日）— 德黑兰全城送葬游行 <span class="timeline-badge badge-now">进行中</span></div>
-        <div class="timeline-content">
-          <strong>当日核心仪式。</strong>送葬仪式6时开始，灵车自东向西穿行德黑兰约10公里，途经阿扎迪广场，预计持续10至12小时<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-2">[2]</a></sup>。德黑兰空域全面关闭<sup><a href="#cite-6">[6]</a></sup>。德黑兰市长扎卡尼将此次活动形容为"该市历史上规模最大的集会"，预计约2000万人参加<sup><a href="#cite-6">[6]</a></sup>。革命卫队高级将领哈桑扎德负责指挥，沿途地铁站挤满送别人群<sup><a href="#cite-1">[1]</a></sup>。"圣城旅"指挥官卡尼罕见现身<sup><a href="#cite-1">[1]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item upcoming">
-        <div class="timeline-date">7月7日（周一）— 库姆殡礼 <span class="timeline-badge badge-upcoming">即将举行</span></div>
-        <div class="timeline-content">
-          遗体将被运往伊朗什叶派宗教教育重镇库姆，举行哈梅内伊及其家属遗体送葬仪式及相关殡礼活动<sup><a href="#cite-2">[2]</a></sup><sup><a href="#cite-3">[3]</a></sup>。库姆是什叶派神职人员合法性与神学院中心，殡礼在这里举行具有宗教权威传承的象征意义<sup><a href="#cite-7">[7]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item upcoming">
-        <div class="timeline-date">7月8日（周二）— 伊拉克纳杰夫/卡尔巴拉跨国送葬 <span class="timeline-badge badge-upcoming">即将举行</span></div>
-        <div class="timeline-content">
-          遗体将被空运至邻国伊拉克什叶派圣城纳杰夫和卡尔巴拉接受吊唁，之后再运回国内<sup><a href="#cite-1">[1]</a></sup>。据CNN报道，伊拉克官方将组织迎接仪式，多个省宣布当天放假以便民众前往悼念<sup><a href="#cite-1">[1]</a></sup>。纳杰夫与卡尔巴拉构成什叶派最重要的精神圣地<sup><a href="#cite-7">[7]</a></sup>。约170万伊拉克人跨境参与悼念活动<sup><a href="#cite-7">[7]</a></sup>。
-        </div>
-      </div>
-
-      <div class="timeline-item upcoming">
-        <div class="timeline-date">7月9日（周三）— 马什哈德最终安葬 <span class="timeline-badge badge-upcoming">即将举行</span></div>
-        <div class="timeline-content">
-          遗体将运回伊朗东北部圣城马什哈德——哈梅内伊的出生地，在伊玛目礼萨圣陵举行遗体送葬及安葬仪式<sup><a href="#cite-2">[2]</a></sup><sup><a href="#cite-3">[3]</a></sup>。安葬时间接近什叶派第四伊玛目萨贾德殉难纪念日，在伊斯兰历穆哈兰姆月期间，宗教象征意义突出<sup><a href="#cite-7">[7]</a></sup>。穆杰塔巴希望出席但被安全部门拒绝<sup><a href="#cite-1">[1]</a></sup>。
-        </div>
-      </div>
-
-    </div>
+  <div class="focus-box">
+    <span class="tag">7月6日 · 德黑兰送葬游行</span>
+    <div class="card-title">灵车穿行德黑兰10公里 数百万民众沿途送行</div>
+    <p>7月6日清晨6时（伊朗时间），载有哈梅内伊及4名遇害家人灵柩（均裹国旗）的灵车自东向西穿行德黑兰，全程约<strong>10公里</strong>，预计持续10—12小时。游行路线为达马万德街→伊玛目侯赛因广场→恩格鲁布广场→阿扎迪广场→沙希德·拉什卡里街<sup><a href="#cite-2">[2]</a></sup>。沿途"数以百万计"民众追随送行，哀悼者投掷头巾祈福，高喊复仇与抵抗口号<sup><a href="#cite-1">[1]</a></sup>。</p>
+    <p>组织方刻意避免重演1989年霍梅尼葬礼踩踏惨剧（当时人群冲破警戒线拽下直升机灵柩，致多人死亡、数百人受伤）。德黑兰急救服务中心负责人表示，截至目前<strong>无人员死亡或重伤报告</strong>，归功于详细预案与急救部署<sup><a href="#cite-2">[2]</a></sup>。</p>
+    <p>革命卫队总司令瓦希迪、"圣城旅"指挥官卡尼罕见现身葬礼现场；伊拉克真主党成员亦出席<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-2">[2]</a></sup>。</p>
   </div>
 
-  <!-- 外国代表团 -->
-  <div class="section">
-    <h2><span class="icon">🌍</span> 外国代表团与外交动态</h2>
-    <p>据伊朗外交部发言人巴加埃3日表示，预计近100个国家派遣代表出席遗体告别仪式，包括至少8位国家元首（总统或总理）、12国议长及多国外长、部长级官员或特使<sup><a href="#cite-6">[6]</a></sup><sup><a href="#cite-7">[7]</a></sup>。来自90多个国家的宗教界人士、学者等亦表达参与意愿<sup><a href="#cite-3">[3]</a></sup>。西方国家无一受邀<sup><a href="#cite-7">[7]</a></sup>。</p>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="card-title">🇨🇳 中国</div>
-        <div class="card-content">全国人大常委会副委员长何维代表出席<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇷🇺 俄罗斯</div>
-        <div class="card-content">联邦安全会议副主席梅德韦杰夫作为普京特使出席。他在仪式后表示"伊朗终将战胜美国"<sup><a href="#cite-4">[4]</a></sup><sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇵🇰 巴基斯坦</div>
-        <div class="card-content">总理夏巴兹·谢里夫7月3日率团抵达德黑兰出席相关活动<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇹🇯🇬🇪🇮🇶 国家元首</div>
-        <div class="card-content">塔吉克斯坦、格鲁吉亚、伊拉克总统出席<sup><a href="#cite-7">[7]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇦🇲🇵🇰 总理</div>
-        <div class="card-content">亚美尼亚与巴基斯坦总理到场<sup><a href="#cite-7">[7]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇹🇷 土耳其</div>
-        <div class="card-content">副总统代表出席<sup><a href="#cite-7">[7]</a></sup>。</div>
-      </div>
-    </div>
-
-    <div class="alert-box">
-      <strong>外交背景：</strong>此次葬礼正值伊朗与美国60天停火期。7月1日双方在多哈完成低级别间接技术性会谈。美伊谈判因国葬暂停一周，双方同意待活动结束后继续协商<sup><a href="#cite-7">[7]</a></sup><sup><a href="#cite-6">[6]</a></sup>。伊朗向阿富汗发放2500份免费签证，约170万伊拉克人跨境参与悼念<sup><a href="#cite-7">[7]</a></sup>。
-    </div>
+  <div class="focus-box" style="border-left-color: var(--now-color);">
+    <span class="tag" style="background: var(--now-color);">7月7日 · 库姆殡礼（即将开始）</span>
+    <div class="card-title">遗体将转移至圣城库姆举行送葬仪式</div>
+    <p>遗体将于7月7日（伊斯兰历22日）转移至什叶派圣城<strong>库姆</strong>，举行哈梅内伊及其家属遗体的送葬仪式<sup><a href="#cite-5">[5]</a></sup><sup><a href="#cite-6">[6]</a></sup>。库姆是什叶派学术中心，预计将再度吸引大量民众前往悼念。</p>
   </div>
 
-  <!-- 安全态势 -->
-  <div class="section">
-    <h2><span class="icon">🛡️</span> 安全态势</h2>
+  <h3>关键画面提示（供同传参考）</h3>
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="label">阿扎迪广场</div>
+      <div class="value">游行核心节点，人群最密集区域，直升机将载灵柩飞越游行路线</div>
+    </div>
+    <div class="info-item">
+      <div class="label">灵柩</div>
+      <div class="value">5具灵柩（哈梅内伊+4名遇害家人），裹伊朗国旗</div>
+    </div>
+    <div class="info-item">
+      <div class="label">安保</div>
+      <div class="value">混凝土路障、交通管制、地铁站人满为患</div>
+    </div>
+    <div class="info-item">
+      <div class="label">口号</div>
+      <div class="value">"复仇""抵抗"——注意区分官方引导与民众自发</div>
+    </div>
+  </div>
+</section>
 
-    <div class="alert-box alert-danger">
-      <strong>最高级别安保：</strong>伊朗武装部队进入最高战备状态，启动前所未有的最高级别安保预案<sup><a href="#cite-4">[4]</a></sup><sup><a href="#cite-9">[9]</a></sup>。
+<!-- Timeline -->
+<section id="timeline">
+  <h2><span class="icon">📅</span>国葬日程时间线</h2>
+  <div class="timeline">
+
+    <div class="timeline-item done">
+      <div class="tl-date">7月3日（周四）</div>
+      <div class="tl-title">德黑兰国葬启幕<span class="tl-status done">已完成</span></div>
+      <div class="tl-content">国葬仪式在德黑兰正式开幕。伊朗外交部发言人巴加埃称预计近100个国家代表出席<sup><a href="#cite-5">[5]</a></sup>。巴基斯坦总理夏巴兹·谢里夫率团当日抵达德黑兰。</div>
     </div>
 
-    <h3>空域与交通管制</h3>
-    <p>德黑兰空域自7月3日起部分管控，<strong>7月6日全面关闭</strong>，国际和国内机场暂停运营数日<sup><a href="#cite-6">[6]</a></sup>。德黑兰所有公私机构4日至6日暂停办公，市中心大部分区域实施交通管制，私家车禁止通行，紧急开放700多个停车区<sup><a href="#cite-6">[6]</a></sup><sup><a href="#cite-4">[4]</a></sup>。全国六天空域管制<sup><a href="#cite-9">[9]</a></sup>。</p>
+    <div class="timeline-item done">
+      <div class="tl-date">7月4日（周五）</div>
+      <div class="tl-title">德黑兰公众悼念·第一天<span class="tl-status done">已完成</span></div>
+      <div class="tl-content">清晨在伊玛目霍梅尼大清真寺主祈祷厅开始公众告别仪式，5具灵柩安放于此。最小棺椁前摆放遇害外孙女扎赫拉遗照。新华社称"数百万"民众前往<sup><a href="#cite-1">[1]</a></sup>。</div>
+    </div>
 
-    <h3>后勤与医疗保障</h3>
-    <p>政府调集2500辆救护车、21架直升机、100架无人机及数千名救援人员；德黑兰20多家医院、50万升静脉输液和2万间教室处于待命状态<sup><a href="#cite-4">[4]</a></sup>。因气温超35°C，清真寺广场设置6000多个高空喷淋装置降温，军队烘焙5000万个面包、部署16个流动面包房<sup><a href="#cite-4">[4]</a></sup><sup><a href="#cite-7">[7]</a></sup>。</p>
+    <div class="timeline-item done">
+      <div class="tl-date">7月5日（周六）</div>
+      <div class="tl-title">德黑兰公众悼念·第二天<span class="tl-status done">已完成</span></div>
+      <div class="tl-content">悼念活动因人流过多延长1小时至晚10时结束。清真寺外设置大型混凝土路障防踩踏。哈梅内伊另外三个儿子（穆斯塔法、梅萨姆、马苏德）现身灵柩旁祈祷。新任最高领袖穆杰塔巴发布任免令，再次任命穆赫辛尼·埃杰伊为司法总监<sup><a href="#cite-10">[10]</a></sup>。</div>
+    </div>
 
-    <h3>以色列威胁与暗杀情报</h3>
-    <p>伊朗武装部队哈塔姆安比亚中央总部司令阿卜杜拉希警告美以："切勿误判形势，对我国的任何威胁与侵略都将招致严厉报复"<sup><a href="#cite-6">[6]</a></sup>。据《纽约时报》报道，美方认为以色列曾密谋暗杀伊朗谈判代表卡利巴夫和外长阿拉格齐；4月卡利巴夫返程时，伊朗安全部队示警其飞机可能遭以军战机袭击，飞机紧急降落马什哈德<sup><a href="#cite-6">[6]</a></sup>。悼念期间，伊朗情报部在锡斯坦-俾路支斯坦等地破获间谍组织<sup><a href="#cite-9">[9]</a></sup>。</p>
+    <div class="timeline-item done">
+      <div class="tl-date">7月6日（周日）</div>
+      <div class="tl-title">德黑兰送葬游行<span class="tl-status done">已完成</span></div>
+      <div class="tl-content">灵车自东向西穿行德黑兰约10公里，途经阿扎迪广场。沿途数百万民众追随送行。无人员死亡或重伤报告。革命卫队总司令瓦希迪、圣城旅指挥官卡尼罕见现身<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-2">[2]</a></sup>。</div>
+    </div>
 
-    <h3>特朗普表态</h3>
-    <p>美国总统特朗普称，美国本可在葬礼期间袭击出席活动的伊朗官员，但选择不这样做，因为"需要有人进行谈判"。他对伊朗民众的哀悼情绪表示意外，称原以为人们会憎恨哈梅内伊，质疑现场的哭泣"也许是假的"<sup><a href="#cite-7">[7]</a></sup><sup><a href="#cite-10">[10]</a></sup>。</p>
+    <div class="timeline-item now">
+      <div class="tl-date">7月7日（周一）</div>
+      <div class="tl-title">库姆送葬仪式<span class="tl-status now">进行中</span></div>
+      <div class="tl-content">遗体将转移至圣城库姆举行送葬仪式<sup><a href="#cite-5">[5]</a></sup><sup><a href="#cite-6">[6]</a></sup>。库姆为什叶派学术重镇，预计大批民众与宗教学者参与。</div>
+    </div>
+
+    <div class="timeline-item upcoming">
+      <div class="tl-date">7月8日（周二）</div>
+      <div class="tl-title">伊拉克纳杰夫/卡尔巴拉跨国吊唁<span class="tl-status upcoming">即将到来</span></div>
+      <div class="tl-content">应伊拉克各界要求，遗体将空运至伊拉克什叶派圣城纳杰夫和卡尔巴拉接受吊唁，之后运回伊朗。伊拉克多个省份宣布当天放假以便民众悼念<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-6">[6]</a></sup>。</div>
+    </div>
+
+    <div class="timeline-item upcoming">
+      <div class="tl-date">7月9日（周三）</div>
+      <div class="tl-title">马什哈德最终安葬<span class="tl-status upcoming">即将到来</span></div>
+      <div class="tl-content">遗体送至马什哈德，安葬于伊玛目礼萨圣陵（Imam Reza Shrine）。马什哈德是哈梅内伊的家乡<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-5">[5]</a></sup>。</div>
+    </div>
+
   </div>
+</section>
 
-  <!-- 人群规模 -->
-  <div class="section">
-    <h2><span class="icon">📊</span> 人群规模：官方 vs 外媒口径</h2>
+<!-- Foreign Delegations -->
+<section id="delegations">
+  <h2><span class="icon">🌐</span>外国代表团与表态</h2>
+  <div class="card">
+    <p>伊朗外交部发言人巴加埃7月3日称预计近<strong>100个国家</strong>代表出席。塔斯尼姆通讯社称多国现任及前任政要、宗教学者、学界人士出席<sup><a href="#cite-5">[5]</a></sup>。</p>
     <table class="compare-table">
       <thead>
-        <tr>
-          <th>口径来源</th>
-          <th>预计/实际人数</th>
-          <th>备注</th>
-        </tr>
+        <tr><th>国家/组织</th><th>代表</th><th>身份</th><th>抵达时间</th></tr>
       </thead>
       <tbody>
-        <tr>
-          <td class="official">伊朗官方（塔斯尼姆通讯社等）</td>
-          <td>1500万—2000万（德黑兰）<br>全国6天超3500万人次<sup><a href="#cite-9">[9]</a></sup></td>
-          <td>德黑兰副市长塔瓦科利扎德称筹备1500万—2000万；市长扎卡尼称7月6日游行约2000万人，"该市历史上规模最大集会"<sup><a href="#cite-6">[6]</a></sup><sup><a href="#cite-8">[8]</a></sup></td>
-        </tr>
-        <tr>
-          <td class="foreign">外媒（AP/路透/法新社等）</td>
-          <td>"数百万"（millions）</td>
-          <td>美联社称沿途"数以百万计"；法新社引述个体哀悼者；报道均未采用官方数千万口径<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-2">[2]</a></sup></td>
-        </tr>
-        <tr>
-          <td class="foreign">分析人士（印度时报援引）</td>
-          <td>"数千万级别"</td>
-          <td>认为参与人数可能达数千万级别，安全与组织为核心挑战<sup><a href="#cite-3">[3]</a></sup></td>
-        </tr>
-        <tr>
-          <td class="official">历史参照（1989年霍梅尼葬礼）</td>
-          <td>上千万人</td>
-          <td>伊朗伊斯兰共和国通讯社报道当年人潮过于拥挤，灵柩运输一度中断，踩踏致多人死亡<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-3">[3]</a></sup></td>
-        </tr>
+        <tr><td>中国</td><td>何维</td><td>全国人大常委会副委员长</td><td>7月3日前后</td></tr>
+        <tr><td>俄罗斯</td><td>梅德韦杰夫</td><td>联邦安全会议副主席</td><td>7月3日前后</td></tr>
+        <tr><td>巴基斯坦</td><td>夏巴兹·谢里夫</td><td>总理</td><td>7月3日</td></tr>
+        <tr><td>伊拉克</td><td>真主党成员等</td><td>什叶派武装代表</td><td>7月6日到场</td></tr>
+        <tr><td>其他</td><td colspan="3">伊方称逾30国官员、90多国宗教人士和学者愿出席悼念活动<sup><a href="#cite-5">[5]</a></sup></td></tr>
       </tbody>
     </table>
-    <p style="margin-top:10px;font-size:14px;color:#666;">注：官方口径与外媒口径存在显著差异。伊朗总人口约8800万，官方2000万相当于首都常住人口（1700万）以上规模。外媒普遍使用"数百万"表述，未采纳官方数千万口径。</p>
   </div>
+</section>
 
-  <!-- 新任最高领袖动态 -->
-  <div class="section">
-    <h2><span class="icon">👤</span> 新任最高领袖穆杰塔巴·哈梅内伊动态</h2>
-    <p>哈梅内伊次子穆杰塔巴自2月底美以军事行动以来从未公开露面，主要通过书面致辞和社交媒体文字方式理政<sup><a href="#cite-1">[1]</a></sup><sup><a href="#cite-3">[3]</a></sup>。他在美以空袭中受轻伤，后经伊朗官方表示身体状况已基本痊愈，并深度参与国家治理<sup><a href="#cite-3">[3]</a></sup>。</p>
-    <p>穆杰塔巴在近期书面致辞中呼吁伊朗人民"坚定立场，保持头脑清醒，维护团结互信，不与敌人结盟"<sup><a href="#cite-3">[3]</a></sup>。</p>
+<!-- Mojtaba Khamenei -->
+<section id="mojtaba">
+  <h2><span class="icon">👤</span>新任最高领袖穆杰塔巴·哈梅内伊动态</h2>
+  <div class="alert-box">
+    <div class="alert-title">⚠ 核心关注：穆杰塔巴自2月底空袭至今从未公开露面</div>
+    <p>葬礼三天（7月4—6日）均未现身灵柩旁。7月5日其另外三个儿子在灵柩旁祈祷时，穆杰塔巴仍未出现<sup><a href="#cite-1">[1]</a></sup>。</p>
+  </div>
+  <div class="card">
+    <h3>最新动态</h3>
+    <p><strong>7月5日</strong>：穆杰塔巴发布任免令，再次任命吴拉姆侯赛因·穆赫辛尼·埃杰伊为司法总监——这是他在葬礼期间为数不多有公开记录的活动<sup><a href="#cite-10">[10]</a></sup>。</p>
+    <p><strong>是否出席马什哈德安葬</strong>：据《纽约时报》7月4日报道（援引2名IRGC成员及1名葬礼安排人员），穆杰塔巴希望参加7月9日马什哈德安葬仪式送别父亲，但<strong>伊朗安全部门予以拒绝</strong>，担心以色列借机暗杀或追踪其行踪<sup><a href="#cite-1">[1]</a></sup>。</p>
+    <p><strong>派系博弈</strong>：强硬派与务实派均在争取穆杰塔巴支持。强硬派声称在其公开露面或发表录音讲话前将抵制外交；务实派（总统佩泽希齐扬、议长卡利巴夫）已说服其支持对美谈判以缓解经济困境<sup><a href="#cite-1">[1]</a></sup>。</p>
+    <p><strong>继任背景</strong>：专家会议于3月8日发表声明推举其为新最高领袖（部分报道称3月3日在革命卫队压力下选定）<sup><a href="#cite-11">[11]</a></sup>。</p>
+    <p style="color: var(--text-secondary); font-size: 13px; margin-top: 10px;">⚠ 争议性报道（未获官方证实）：部分西方/海湾情报称穆杰塔巴在2月空袭中受重伤（面部伤、断腿、可能昏迷），被严密看护在库姆。伊朗官方仍以其名义发布政令。</p>
+  </div>
+</section>
 
-    <div class="alert-box">
-      <strong>内部权力博弈：</strong>《纽约时报》援引4名伊朗高级官员称，强硬派与务实派都在争取穆杰塔巴支持。强硬派声称在穆杰塔巴公开露面或发表录音讲话前将抵制外交手段；务实派（总统佩泽希齐扬、议长卡利巴夫）已成功说服穆杰塔巴支持与美国谈判以缓解经济困境<sup><a href="#cite-1">[1]</a></sup>。
+<!-- Security -->
+<section id="security">
+  <h2><span class="icon">🛡</span>安全态势</h2>
+  <div class="info-grid">
+    <div class="info-item">
+      <div class="label">空域管控</div>
+      <div class="value">德黑兰空域自7月3日起部分管控，出席葬礼外国代表除外<sup><a href="#cite-5">[5]</a></sup></div>
     </div>
-
-    <p>7月3日遗体告别仪式上，穆杰塔巴的岳父吴拉姆阿里·哈达达德勒代为出席<sup><a href="#cite-4">[4]</a></sup>。伊朗官方明确表示，出于安全原因（以色列仍将其视为潜在打击目标），穆杰塔巴不会出现在公开仪式上<sup><a href="#cite-7">[7]</a></sup>。</p>
-  </div>
-
-  <!-- 国际反应 -->
-  <div class="section">
-    <h2><span class="icon">🌐</span> 国际反应与安理会动态</h2>
-
-    <div class="info-grid">
-      <div class="info-card">
-        <div class="card-title">🇺🇸 美国</div>
-        <div class="card-content">特朗普称可在葬礼期间袭击伊朗官员但选择不这样做；质疑民众哭泣"也许是假的"；美伊60天停火期内，多哈低级别间接会谈进行中<sup><a href="#cite-6">[6]</a></sup><sup><a href="#cite-7">[7]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇮🇱 以色列</div>
-        <div class="card-content">被指曾密谋暗杀伊朗谈判代表；3月曾将卡利巴夫与阿拉格齐列入暗杀目标名单；伊朗指控以方企图破坏伊美谅解备忘录<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇷🇺 俄罗斯</div>
-        <div class="card-content">特使梅德韦杰夫出席葬礼并表示"伊朗终将战胜美国"，普京与特朗普关系因停火分歧恶化<sup><a href="#cite-4">[4]</a></sup><sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇵🇰 巴基斯坦</div>
-        <div class="card-content">总理夏巴兹出席；巴方在多哈分别与伊美谈判代表会谈，不排除未来在伊斯兰堡承办下一轮会谈<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🇶🇦 卡塔尔</div>
-        <div class="card-content">斡旋方。有消息指美伊同意解冻存放卡塔尔的30亿美元伊朗资金（用于人道主义物资采购），但美方否认<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
-      <div class="info-card">
-        <div class="card-title">🏛️ 联合国安理会</div>
-        <div class="card-content">截至目前，安理会未就哈梅内伊遇害或国葬发表专项决议。伊朗政府表示将通过法律和外交手段追究美以违反国际法的责任<sup><a href="#cite-6">[6]</a></sup>。</div>
-      </div>
+    <div class="info-item">
+      <div class="label">美军调动</div>
+      <div class="value">7月6日确认至少11架美军空中加油机撤离西亚<sup><a href="#cite-4">[4]</a></sup></div>
+    </div>
+    <div class="info-item">
+      <div class="label">以方威胁</div>
+      <div class="value">以媒大量报道德黑兰人群规模，提到哀悼者手持"为流血复仇"红旗<sup><a href="#cite-3">[3]</a></sup></div>
+    </div>
+    <div class="info-item">
+      <div class="label">暗杀情报</div>
+      <div class="value">《纽约时报》报道以方曾策划暗杀伊朗谈判代表卡利巴夫和外长阿拉格齐</div>
+    </div>
+    <div class="info-item">
+      <div class="label">现场安保</div>
+      <div class="value">混凝土路障、交通管制、伊玛目霍梅尼清真寺外防踩踏措施</div>
+    </div>
+    <div class="info-item">
+      <div class="label">以军空袭险情</div>
+      <div class="value">国葬核心仪式前以军已完成对伊朗腹地空袭部署，起飞前一小时终止；特朗普称美方不会在葬礼期间采取军事行动</div>
     </div>
   </div>
-
-  <!-- 背景 -->
-  <div class="section">
-    <h2><span class="icon">📋</span> 背景资料</h2>
-    <p>阿里·哈梅内伊（Ayatollah Ali Khamenei），1939年生，1989年接任伊朗最高领袖，主导伊朗政治、外交和安全事务近37年<sup><a href="#cite-3">[3]</a></sup>。2026年2月28日，在美以联合空袭德黑兰中遇害身亡，其多名亲属同时遇难<sup><a href="#cite-3">[3]</a></sup><sup><a href="#cite-4">[4]</a></sup>。</p>
-    <p>国葬原定3月4日至6日举行，因战事持续被迫推迟。6月伊朗官方宣布重启安排，7月3日至9日正式举行<sup><a href="#cite-3">[3]</a></sup>。送葬路线串联德黑兰（国家政治中心）→ 库姆（宗教教育重镇）→ 纳杰夫/卡尔巴拉（什叶派精神圣地）→ 马什哈德（朝圣中心，哈梅内伊出生地），将宗教仪式与国家叙事紧密结合<sup><a href="#cite-7">[7]</a></sup>。</p>
-    <p>国葬时间选在伊斯兰历穆哈兰姆月（什叶派纪念伊玛目侯赛因殉难的重要宗教时期），使哈梅内伊之死被置于什叶派"反抗压迫""捍卫正义"的历史脉络中<sup><a href="#cite-7">[7]</a></sup>。</p>
+  <div class="card" style="margin-top: 12px;">
+    <p><strong>分析</strong>：美军撤走至少11架空中加油机，分析人士认为美方在重新评估伊朗韧性及葬礼大规模人群后的反应风险后，撤走部分高价值军事资产<sup><a href="#cite-4">[4]</a></sup>。以方虽未在葬礼期间发动袭击，但暗杀穆杰塔巴的情报持续存在，安全部门拒绝其出席马什哈德安葬仪式。</p>
   </div>
+</section>
 
-  <!-- Sources -->
-  <div class="sources">
-    <h2 style="color:white;border-bottom:2px solid #444;padding-bottom:10px;margin-bottom:14px;">📚 来源 Sources</h2>
-    <ol>
-      <li id="cite-1">新华网：《哈梅内伊葬礼进入第三天 灵车穿行德黑兰》（2026-07-06 19:26），<a href="http://www.xinhuanet.com/20260706/561390de1ec341ebb1e99d0f2bda3f43/c.html" target="_blank">xinhuanet.com</a></li>
-      <li id="cite-2">新华网：《伊朗已故最高领袖送葬仪式在德黑兰举行》（2026-07-06 11:54），<a href="http://www.xinhuanet.com/20260706/fb96288229f0498facf2a787d87a0146/c.html" target="_blank">xinhuanet.com</a></li>
-      <li id="cite-3">中新网：《伊朗送别哈梅内伊》（2026-07-04），<a href="http://www.chinanews.com.cn/gj/2026/07-04/10652590.shtml" target="_blank">chinanews.com.cn</a></li>
-      <li id="cite-4">凤凰网/每日经济新闻：《哈梅内伊遗体告别仪式上，伊朗总统泪洒现场》（2026-07-04），<a href="https://news.ifeng.com/c/8uUOPGXOgBq" target="_blank">ifeng.com</a></li>
-      <li id="cite-5">中国网/环球时报：《多国代表出席仪式，伊朗隆重告别哈梅内伊》（2026-07-04），<a href="http://news.china.com.cn/2026-07/04/content_118582495.shtml" target="_blank">china.com.cn</a></li>
-      <li id="cite-6">中国网/环球时报：《多国代表出席仪式，伊朗隆重告别哈梅内伊》（详细报道，2026-07-04），<a href="http://news.china.com.cn/2026-07/04/content_118582495.shtml" target="_blank">china.com.cn</a></li>
-      <li id="cite-7">凤凰卫视：《一场迟来的国葬，伊朗传递多重信号》（2026-07-05），<a href="https://news.ifeng.com/c/8uW12bU05Mp" target="_blank">ifeng.com</a></li>
-      <li id="cite-8">Worldwide News：《Tehran Prepares Twenty Million Mourners National Mourning Event》，<a href="https://www.worldwidenews.ca/iran-plans-massive-funeral-procession-three-major-cities/" target="_blank">worldwidenews.ca</a></li>
-      <li id="cite-9">头条/央视国际时讯综合报道：哈梅内伊国葬安保与人群规模（2026-07-06），<a href="http://m.toutiao.com/group/7659326745794970122/" target="_blank">toutiao.com</a></li>
-      <li id="cite-10">搜狐/士韶动漫说：《7月6日：伊朗举办哈梅内伊盛大国葬》（2026-07-06），<a href="https://m.sohu.com/a/1046284197_122290541/" target="_blank">sohu.com</a></li>
-    </ol>
+<!-- Crowd Size -->
+<section id="crowd">
+  <h2><span class="icon">📊</span>人群规模（官方 vs 外媒口径）</h2>
+  <table class="compare-table">
+    <thead>
+      <tr><th>口径</th><th>来源</th><th>数字</th><th>备注</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="official">官方</td>
+        <td>伊朗官方累计预估</td>
+        <td class="official">约3500万人</td>
+        <td>德黑兰+库姆+马什哈德三场主场叠加伊拉克配套悼念，六天累计</td>
+      </tr>
+      <tr>
+        <td class="official">官方</td>
+        <td>德黑兰副市长/市长</td>
+        <td class="official">1500万—2000万人</td>
+        <td>德黑兰单日峰值预测</td>
+      </tr>
+      <tr>
+        <td class="foreign">外媒</td>
+        <td>新华社7月6日报道</td>
+        <td class="foreign">"数以百万计"</td>
+        <td>描述游行沿途追随民众，未采用千万级数字</td>
+      </tr>
+      <tr>
+        <td class="foreign">外媒</td>
+        <td>法新社/美联社/路透社</td>
+        <td class="foreign">"millions"（数百万）</td>
+        <td>描述现场人潮但未给出独立计数，主要引用伊朗官方预估</td>
+      </tr>
+      <tr>
+        <td class="foreign">参考</td>
+        <td>1989年霍梅尼葬礼</td>
+        <td class="foreign">官方称上千万人</td>
+        <td>踩踏致多人死亡、数百人受伤</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="card">
+    <p style="font-size: 13px; color: var(--text-secondary);"><strong>口径提示</strong>：同传解说时须明确区分"伊朗官方预估"与"外媒报道"两个人流数据来源。官方3500万为六天累计、含多城叠加；外媒普遍使用"数百万"描述单日单城，未做独立计数。</p>
   </div>
+</section>
 
-  <!-- Footer -->
-  <div class="footer">
-    <p>凤凰卫视资讯台 · 同传解说参考简报 | 本简报整合通讯社与权威媒体信息，供本台同传/解说参考使用</p>
-    <p>人数与立场表述已区分官方与外媒口径 | 最后更新：2026年7月7日 00:30 北京时间</p>
-    <p style="margin-top:6px;">在线访问：<a href="https://zhaoparkerstudio.github.io/Real-time-Info-Update-of-Khamenei-State-Funeral-for-Phoenix-TV/" style="color:var(--phoenix-red);">GitHub Pages</a></p>
+<!-- International Reactions -->
+<section id="reactions">
+  <h2><span class="icon">🏛</span>国际反应与联合国安理会动态</h2>
+  <div class="card">
+    <h3>联合国安理会</h3>
+    <p><strong>2月28日紧急会议</strong>：秘书长古特雷斯在紧急会议上同时谴责美以空袭和伊朗报复行动，警告"可能引发更广泛冲突"。会议由巴林、法国、俄罗斯、中国、哥伦比亚5国发起<sup><a href="#cite-7">[7]</a></sup>。</p>
+    <p><strong>3月2日</strong>：伊朗外长阿拉格齐致函联合国秘书长和安理会主席，指控美以"公然违反《联合国宪章》第2(4)条"，援引第51条自卫权，要求安理会采取措施确保追责<sup><a href="#cite-8">[8]</a></sup>。</p>
+    <p><strong>3月11日决议2817</strong>：由巴林代表海合会及约旦提交，13票赞成、中俄2票弃权通过，136国共提——针对更广泛的中东危机，非专门针对葬礼<sup><a href="#cite-9">[9]</a></sup>。</p>
+    <p style="color: var(--text-secondary); font-size: 13px;">⚠ 本次检索未发现安理会专门针对7月葬礼召开的会议或决议。</p>
   </div>
+  <div class="card">
+    <h3>各国立场</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>国家/方</th><th>立场</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>英法德</td><td>联合声明仅谴责伊朗地区空袭（未谴责美以空袭），呼吁恢复伊朗核谈判<sup><a href="#cite-7">[7]</a></sup></td></tr>
+        <tr><td>以色列</td><td>驻联合国大使达农称谴责空袭是"虚伪"<sup><a href="#cite-7">[7]</a></sup></td></tr>
+        <tr><td>美国（特朗普）</td><td>称哈梅内伊之死是"伊朗人民夺回国家的最大机会"；称美方不会在葬礼期间采取军事行动<sup><a href="#cite-7">[7]</a></sup></td></tr>
+        <tr><td>中国/俄罗斯</td><td>安理会决议2817投弃权票</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- Sources -->
+<section id="sources" class="sources">
+  <h2><span class="icon">📚</span>来源（Sources）</h2>
+  <ol>
+    <li id="cite-1">新华网 —《哈梅内伊葬礼进入第三天 灵车穿行德黑兰》（2026-07-06）<br><a href="http://www.xinhuanet.com/20260706/561390de1ec341ebb1e99d0f2bda3f43/c.html" target="_blank">xinhuanet.com</a></li>
+    <li id="cite-2">WANA（西亚通讯社）— Live Coverage of Iran's Late Supreme Leader's Funeral / Day 4（2026-07-06）<br><a href="https://wanaen.com/live-coverage-of-irans-late-supreme-leaders-funeral-day-4/" target="_blank">wanaen.com</a></li>
+    <li id="cite-3">WANA — Israeli Media Report Tehran Funeral Crowds（2026-07-06）<br><a href="https://wanaen.com/israeli-media-report-tehran-funeral-crowds/" target="_blank">wanaen.com</a></li>
+    <li id="cite-4">WANA — Withdrawal of 11 U.S. Aerial Refueling Aircraft from West Asia Confirmed（2026-07-06）<br><a href="https://wanaen.com/withdrawal-of-11-u-s-aerial-refueling-aircraft-from-west-asia-confirmed/" target="_blank">wanaen.com</a></li>
+    <li id="cite-5">人民网/新华社 —《伊朗称逾30国官员拟出席已故最高领袖悼念活动》（2026-07-01）<br><a href="https://world-app.people.cn/n1/2026/0701/c1002-40751502.html" target="_blank">people.cn</a></li>
+    <li id="cite-6">Irak Haberleri — Iran sets official funeral schedule for Ayatollah Khamenei（2026-06-13）<br><a href="https://irakhaberleri.com/english/iran-sets-official-funeral-schedule-for-ayatollah-khamenei-9460" target="_blank">irakhaberleri.com</a></li>
+    <li id="cite-7">News Public Trust（转载LA Times/AP）— U.N. chief condemns U.S.-Israeli attacks on Iran at emergency Security Council meeting（2026-02-28）<br><a href="https://newspublictrust.com/u-n-chief-condemns-u-s-israeli-attacks-on-iran-at-emergency-security-council-meeting" target="_blank">newspublictrust.com</a></li>
+    <li id="cite-8">WANA — Iran FM's Letter to the UN After the Supreme Leader's Assassination（2026-03-02）<br><a href="https://wanaen.com/iran-fms-letter-to-the-un-after-the-supreme-leaders-assassination/" target="_blank">wanaen.com</a></li>
+    <li id="cite-9">Security Council Report — The Middle East Crisis: Votes on Two Draft Resolutions（决议2817，2026-03-11）<br><a href="https://www.securitycouncilreport.org/whatsinblue/2026/03/the-middle-east-crisis-votes-on-two-draft-resolutions.php" target="_blank">securitycouncilreport.org</a></li>
+    <li id="cite-10">WANA — Iran's Supreme Leader Reappoints Gholamhossein Mohseni Ejei as Judiciary Chief（2026-07-05）<br><a href="https://wanaen.com/irans-supreme-leader-reappoints-gholamhossein-mohseni-ejei-as-judiciary-chief/" target="_blank">wanaen.com</a></li>
+    <li id="cite-11">新华网客户端 —《国际观察丨哈梅内伊之子继任最高领袖 伊朗何去何从》<br><a href="https://app.xinhuanet.com/news/article.html?articleId=c95736d2cd511938a9aa9f5849b34813" target="_blank">xinhuanet.com</a></li>
+    <li id="cite-12">aviation.direct — Escalation in the Middle East: airspace closures（领空关闭背景）<br><a href="https://aviation.direct/en/Escalation-in-the-Middle-East:-Military-strikes-trigger-widespread-airspace-closures-and-global-flight-chaos" target="_blank">aviation.direct</a></li>
+  </ol>
+</section>
 
 </div>
+
+<footer>
+  <p>凤凰卫视资讯台 · 同传解说参考简报 | 本简报仅供内部参考，数据口径已区分官方与外媒来源</p>
+  <p>在线访问：https://zhaoparkerstudio.github.io/Real-time-Info-Update-of-Khamenei-State-Funeral-for-Phoenix-TV/</p>
+</footer>
 
 </body>
 </html>
